@@ -4,9 +4,7 @@
  */
 package model;
 
-import java.awt.List;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  *
@@ -14,16 +12,32 @@ import java.util.Date;
  */
 public class PaqueteAventurero extends PaqueteTuristico{
 
+    private final static double PRECIO_BASE = 50000;
+    private final static double PRECIO_MONTAÑA = 15000;
+    private final static double PRECIO_PARAPENTE = 40000;
+    private final static double PRECIO_ESCALADA = 20000;
+    private final static double PRECIO_SURF = 25000;
+    private final static double PRECIO_EXPLORACION = 35000;
+    private final static double PRECIO_PASEO = 10000;
+
     private int RestriccionEdad;
     private ReservaEquipamiento Elementos;
-    private String[] ActividadesDelPaquetePA;
-     
-    public PaqueteAventurero(int RestriccionEdad, ReservaEquipamiento Elementos, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin) {
-        super(Nombre, Precio, FechaInicio, FechaFin);
+    private static String[] actividades;
+
+    public PaqueteAventurero(int RestriccionEdad, ReservaEquipamiento Elementos, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
+        super(Nombre, Precio, FechaInicio, FechaFin, ActividadesDelPaquete);
         this.RestriccionEdad = RestriccionEdad;
         this.Elementos = Elementos;
-        this.ActividadesDelPaquetePA = new String[4];
-
+    }
+     
+     static {
+        actividades = new String[6];
+        actividades[0] = "Montaña Rusa";
+        actividades[1] = "Parapente";
+        actividades[2] = "Escalada en Roca";
+        actividades[3] = "Surf";
+        actividades[4] = "Exploración de Cuevas";
+        actividades[5] = "Paseo de Rio";
     }
     
     
@@ -46,24 +60,62 @@ public class PaqueteAventurero extends PaqueteTuristico{
         this.Elementos = Elementos;
     }
     
-    
-    @Override
-    public double CalcPrecio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String toStringE() {
+        
+        return (getActividadesDelPaquete()[0]+ ", " + getActividadesDelPaquete()[1]+ ", " + getActividadesDelPaquete()[2]+ ", " + getActividadesDelPaquete()[3]);
     }
 
     @Override
-    public void AgregarActividad(String Actividad) {
-        for (int x =0 ; x< ActividadesDelPaquetePA.length; x++) {
-            {
-                if(ActividadesDelPaquetePA[x] == null)
-                {
-                    ActividadesDelPaquetePA[x] = Actividad;
-                    break;
-                }
+    public String toString() {
+        return "PaqueteAventurero{" + "RestriccionEdad=" + RestriccionEdad + ", Elementos=" + Elementos + '}';
+    }
+    
+    
+    
+    @Override
+    public double CalcPrecio() {
+        double precio = PRECIO_BASE;
+        
+        for(String a : ActividadesDelPaquete)
+        {
+            switch (a) {
+                case "Surf" -> precio += PRECIO_SURF;
+                case "Escalada en Roca" -> precio += PRECIO_ESCALADA;
+                case "Parapente" -> precio += PRECIO_PARAPENTE;
+                case "Montaña Rusa" -> precio += PRECIO_MONTAÑA;
+                case "Exploracion de Cuevas" -> precio+= PRECIO_EXPLORACION;
+                case "Paseo de Rio" -> precio+= PRECIO_PASEO;
+                default -> {}
             }
         }
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.Precio=precio;
+        return precio;
     }
+    
+        public int CalcRestEdad()
+    {
+        int x = 0;
+        for(String a : ActividadesDelPaquete)
+        {
+            switch (a) {
+                case "Surf" -> x = 12;
+                case "Escalada en Roca" -> x = 6;
+                case "Parapente" -> x = 4;
+                case "Montaña Rusa" -> x = 10;
+                default -> {}
+            }
+        }
+        return x;
+    }
+        
+    
+
+  
+
+    public static String[] posiblesActividades()
+    {   
+        return actividades;
+    }
+    
     
 }

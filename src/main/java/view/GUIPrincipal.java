@@ -5,13 +5,14 @@
 package view;
 
 import javax.swing.JOptionPane;
+import services.ServicioPaquete;
 
 /**
  *
  * @author Personal
  */
 public class GUIPrincipal extends javax.swing.JFrame {
-
+    private ServicioPaquete s;
  
     /**
      * Creates new form GUIPrincipal
@@ -19,8 +20,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
     public GUIPrincipal() {
         initComponents();
         setLocationRelativeTo(this);
+        s = new ServicioPaquete();
     }
 
+    public ServicioPaquete getServicioP()
+    {
+        return s;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,6 +37,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Archivo = new javax.swing.JMenu();
         MenuPaqueteAventurero = new javax.swing.JMenu();
@@ -62,17 +69,25 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setTitle("Principal");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(460, 360));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Personal\\Desktop\\Universidad\\Programacion\\PJava\\ProyectoEmpresariales_V1\\src\\main\\java\\data\\LogoTurismo.png")); // NOI18N
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 467, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 364, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jMenuBar1.setBackground(new java.awt.Color(51, 153, 255));
         jMenuBar1.setBorder(null);
 
         Archivo.setText("Archivo");
@@ -231,31 +246,30 @@ public class GUIPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void AgregarPaqueteAventureroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarPaqueteAventureroActionPerformed
-                GUIAgregarPA agregarPA = new GUIAgregarPA();
+                GUIAgregarPA agregarPA = new GUIAgregarPA(s);
                 agregarPA.setVisible(true);
+
     }//GEN-LAST:event_AgregarPaqueteAventureroActionPerformed
 
     private void EliminarPaqueteAventureroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPaqueteAventureroActionPerformed
-        GUIEliminarPA eliminarPA = new GUIEliminarPA();
+        GUIEliminarPA eliminarPA = new GUIEliminarPA(s);
                 eliminarPA.setVisible(true);
     }//GEN-LAST:event_EliminarPaqueteAventureroActionPerformed
 
     private void ListarPaqueteAventureroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarPaqueteAventureroActionPerformed
-        GUIListarPA listarPA = new GUIListarPA();
+                GUIListarPA listarPA = new GUIListarPA(s);
                 listarPA.setVisible(true);
     }//GEN-LAST:event_ListarPaqueteAventureroActionPerformed
 
     private void BuscarPaqueteAventureroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPaqueteAventureroActionPerformed
-        GUIBuscarPA buscarPA = new GUIBuscarPA();
+        GUIBuscarPA buscarPA = new GUIBuscarPA(s);
                 buscarPA.setVisible(true);
     }//GEN-LAST:event_BuscarPaqueteAventureroActionPerformed
 
@@ -357,6 +371,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu PaqueteCultural;
     private javax.swing.JMenu a;
     private javax.swing.JMenu ad;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;

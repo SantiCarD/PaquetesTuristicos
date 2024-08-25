@@ -5,7 +5,7 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -14,24 +14,23 @@ import java.util.Date;
 public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
 
     private String NombreGuia;
+    private String[] NombresGuias;
     private int NvlAcompañamiento;
-    private String[] ActividadesDelPaquetePC;
+    
+
+    public PaqueteCultural(String NombreGuia, String[] NombresGuias, int NvlAcompañamiento, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
+        super(Nombre, Precio, FechaInicio, FechaFin, ActividadesDelPaquete);
+        this.NombresGuias = new String[3];
+        this.NombresGuias[0] = "Carlos Lugo";
+        this.NombresGuias[1] = "Sebastian Diaz";
+        this.NombresGuias[2] = "Carlos Ariza";
+        this.NombreGuia = NombresGuias[ThreadLocalRandom.current().nextInt(NombresGuias.length)];
+        this.NvlAcompañamiento = NvlAcompañamiento;
+    }
 
     
-    public PaqueteCultural(String NombreGuia, int NvlAcompañamiento, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin) {
-        super(Nombre, Precio, FechaInicio, FechaFin);
-        this.NombreGuia = NombreGuia;
-        this.NvlAcompañamiento = NvlAcompañamiento;
-        this.ActividadesDelPaquetePC = new String[4];
-    }
+    
 
-    public String getNombreGuia() {
-        return NombreGuia;
-    }
-
-    public void setNombreGuia(String NombreGuia) {
-        this.NombreGuia = NombreGuia;
-    }
 
     public int getNvlAcompañamiento() {
         return NvlAcompañamiento;
@@ -43,11 +42,19 @@ public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
     }
 
     public String[] getActividadesDelPaquetePC() {
-        return ActividadesDelPaquetePC;
+        return ActividadesDelPaquete;
     }
 
     public void setActividadesDelPaquetePC(String[] ActividadesDelPaquete) {
-        this.ActividadesDelPaquetePC = ActividadesDelPaquete;
+        this.ActividadesDelPaquete = ActividadesDelPaquete;
+    }
+
+    public String getNombreGuia() {
+        return NombreGuia;
+    }
+
+    public void setNombreGuia(String NombreGuia) {
+        this.NombreGuia = NombreGuia;
     }
     
     
@@ -56,8 +63,7 @@ public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
     
     @Override
     public double CalcPrecio() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-        // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return 0;
     }
 
 
@@ -67,18 +73,6 @@ public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
         // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public void AgregarActividad(String Actividad) {
-        for (int x =0 ; x< ActividadesDelPaquetePC.length; x++) {
-            {
-                if(ActividadesDelPaquetePC[x] == null)
-                {
-                    ActividadesDelPaquetePC[x] = Actividad;
-                    break;
-                }
-            }
-        }
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
     
 }

@@ -13,24 +13,25 @@ import java.util.Date;
  */
 public abstract class PaqueteTuristico {
     
-    private String Nombre;
-    private Double Precio;
-    private LocalDate FechaInicio;
-    private LocalDate FechaFin;
+    protected String Nombre;
+    protected Double Precio;
+    protected LocalDate FechaInicio;
+    protected LocalDate FechaFin;
+    protected String[] ActividadesDelPaquete;
     
 
-    public PaqueteTuristico(String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin) {
+    public PaqueteTuristico(String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
         this.Nombre = Nombre;
         this.Precio = Precio;
         this.FechaInicio = FechaInicio;
         this.FechaFin = FechaFin;
-        
+        this.ActividadesDelPaquete=ActividadesDelPaquete;
     }
 
     
     
     public abstract double CalcPrecio();
-    public abstract void AgregarActividad(String Actividad);
+    
 
     public String getNombre() {
         return Nombre;
@@ -63,6 +64,16 @@ public abstract class PaqueteTuristico {
     public void setFechaFin(LocalDate FechaFin) {
         this.FechaFin = FechaFin;
     }
+
+    public String[] getActividadesDelPaquete() {
+        return ActividadesDelPaquete;
+    }
+
+    public void setActividadesDelPaquete(String[] ActividadesDelPaquete) {
+        this.ActividadesDelPaquete = ActividadesDelPaquete;
+    }
+
+    
     
     
 
