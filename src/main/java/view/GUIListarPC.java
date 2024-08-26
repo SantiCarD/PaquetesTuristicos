@@ -22,7 +22,7 @@ import services.ServicioPaquete;
  */
 public class GUIListarPC extends javax.swing.JFrame {
 
-    ServicioPaquete s = new ServicioPaquete();
+    private ServicioPaquete s;
 
     /**
      * Creates new form GUIListarPA
@@ -46,21 +46,22 @@ public class GUIListarPC extends javax.swing.JFrame {
                 // Ahora puedes acceder a los métodos específicos de PaqueteAventurero
                 model.addRow(new Object[]{
                     paqueteCultural.getNombre(),
-                    paqueteCultural.getNombreGuia(),
                     "$" + paqueteCultural.getPrecio(),
-                    paqueteCultural.getFechaInicio(), // Método específico de PaqueteAventurero
+                    paqueteCultural.getNombreGuia(),
+                    paqueteCultural.getNvlAcomp(),
+                    paqueteCultural.getFechaInicio(), 
                     paqueteCultural.getFechaFin(),
-                    paqueteCultural.getNvlAcompañamiento(),
-                    paqueteCultural.getActividadesDelPaquete()
+                    paqueteCultural.toStringE()
                 });
             } else {
             }
         }
     }
 
-    public GUIListarPC() {
+    public GUIListarPC(ServicioPaquete s) {
         initComponents();
         setLocationRelativeTo(this);
+        this.s = s;
     }
 
     /**
@@ -112,7 +113,7 @@ public class GUIListarPC extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(568, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(265, 265, 265))
         );
@@ -129,7 +130,7 @@ public class GUIListarPC extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "NombreGuia", "Precio", "FechaInicio", "FechaFin", "Actividades", "NvlAcompañamiento"
+                "Nombre", "Precio", "NombreGuia", "NvlAcompañamiento", "FechaInicio", "FechaFin", "Actividades"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -147,44 +148,39 @@ public class GUIListarPC extends javax.swing.JFrame {
             TablaPA.getColumnModel().getColumn(0).setMinWidth(60);
             TablaPA.getColumnModel().getColumn(0).setPreferredWidth(60);
             TablaPA.getColumnModel().getColumn(0).setMaxWidth(80);
-            TablaPA.getColumnModel().getColumn(1).setMinWidth(100);
-            TablaPA.getColumnModel().getColumn(1).setPreferredWidth(100);
-            TablaPA.getColumnModel().getColumn(1).setMaxWidth(120);
-            TablaPA.getColumnModel().getColumn(2).setMinWidth(60);
-            TablaPA.getColumnModel().getColumn(2).setPreferredWidth(60);
-            TablaPA.getColumnModel().getColumn(2).setMaxWidth(80);
-            TablaPA.getColumnModel().getColumn(3).setMinWidth(70);
-            TablaPA.getColumnModel().getColumn(3).setPreferredWidth(70);
-            TablaPA.getColumnModel().getColumn(3).setMaxWidth(80);
+            TablaPA.getColumnModel().getColumn(1).setMinWidth(60);
+            TablaPA.getColumnModel().getColumn(1).setPreferredWidth(60);
+            TablaPA.getColumnModel().getColumn(1).setMaxWidth(80);
+            TablaPA.getColumnModel().getColumn(2).setMinWidth(100);
+            TablaPA.getColumnModel().getColumn(2).setPreferredWidth(100);
+            TablaPA.getColumnModel().getColumn(2).setMaxWidth(120);
+            TablaPA.getColumnModel().getColumn(3).setMinWidth(150);
+            TablaPA.getColumnModel().getColumn(3).setPreferredWidth(150);
+            TablaPA.getColumnModel().getColumn(3).setMaxWidth(50);
             TablaPA.getColumnModel().getColumn(4).setMinWidth(70);
             TablaPA.getColumnModel().getColumn(4).setPreferredWidth(70);
-            TablaPA.getColumnModel().getColumn(4).setMaxWidth(70);
-            TablaPA.getColumnModel().getColumn(5).setMinWidth(150);
-            TablaPA.getColumnModel().getColumn(5).setPreferredWidth(150);
-            TablaPA.getColumnModel().getColumn(5).setMaxWidth(300);
+            TablaPA.getColumnModel().getColumn(4).setMaxWidth(80);
+            TablaPA.getColumnModel().getColumn(5).setMinWidth(70);
+            TablaPA.getColumnModel().getColumn(5).setPreferredWidth(70);
+            TablaPA.getColumnModel().getColumn(5).setMaxWidth(70);
             TablaPA.getColumnModel().getColumn(6).setMinWidth(150);
             TablaPA.getColumnModel().getColumn(6).setPreferredWidth(150);
-            TablaPA.getColumnModel().getColumn(6).setMaxWidth(50);
+            TablaPA.getColumnModel().getColumn(6).setMaxWidth(300);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 905, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 893, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(158, Short.MAX_VALUE)))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 267, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 14, Short.MAX_VALUE)))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -224,7 +220,7 @@ public class GUIListarPC extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(544, Short.MAX_VALUE)
+                .addContainerGap(530, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(253, 253, 253))
         );
@@ -292,51 +288,20 @@ public class GUIListarPC extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        listarPaquetes();
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        listarPaquetes();
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        listarPaquetes();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIListarPC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIListarPC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIListarPC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIListarPC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIListarPC().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaPA;

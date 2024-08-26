@@ -67,19 +67,7 @@ public class ReservaEquipamiento {
         return elemento1+", " + elemento2 + ", " + elemento3 + ", " + elemento4;
     }
      
-     public void AgregarElemento(String elemento) {
-        if (elemento1.isEmpty()) {
-            elemento1 = elemento;
-        } else if (elemento2.isEmpty()) {
-            elemento2 = elemento;
-        } else if (elemento3.isEmpty()) {
-            elemento3 = elemento;
-        } else if (elemento4.isEmpty()) {
-            elemento4 = elemento;
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pueden agregar mas elementos");
-        }
-    }
+    
      
      static {
         elementos = new String[7]; 

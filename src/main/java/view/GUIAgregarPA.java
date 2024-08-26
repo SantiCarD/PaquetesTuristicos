@@ -17,7 +17,6 @@ import services.ServicioPaquete;
  */
 public class GUIAgregarPA extends javax.swing.JFrame {
     
-    private PaqueteAventurero x;
     private ServicioPaquete s;
     
     public GUIAgregarPA(ServicioPaquete s) {
@@ -25,6 +24,7 @@ public class GUIAgregarPA extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         this.s = s;
         inicializar();
+        s.limpiarListas();
     }
 
     private void inicializar() {
@@ -83,9 +83,9 @@ public class GUIAgregarPA extends javax.swing.JFrame {
         Elementos = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         BtnAgregar3 = new javax.swing.JButton();
-        Elementos1 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         BtnAgregar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         jInternalFrame1.setVisible(true);
 
@@ -371,25 +371,18 @@ public class GUIAgregarPA extends javax.swing.JFrame {
                     .addComponent(Elementos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        Elementos1.setEditable(false);
-        Elementos1.setBackground(new java.awt.Color(255, 255, 255));
-        Elementos1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        Elementos1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Elementos1ActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jLabel10.setText("Precio Total:");
-
         BtnAgregar.setFont(new java.awt.Font("Segoe Print", 0, 14)); // NOI18N
-        BtnAgregar.setText("Calcular Precio");
+        BtnAgregar.setText("Crear Paquete");
         BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAgregarActionPerformed(evt);
             }
         });
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe Print", 0, 14)); // NOI18N
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -427,12 +420,13 @@ public class GUIAgregarPA extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BtnAgregar)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(Elementos1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(BtnAgregar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -457,14 +451,13 @@ public class GUIAgregarPA extends javax.swing.JFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnAgregar)
-                    .addComponent(jLabel10)
-                    .addComponent(Elementos1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(42, 42, 42)
+                .addComponent(BtnAgregar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -498,14 +491,10 @@ public class GUIAgregarPA extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAgregar1ActionPerformed
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-    x =s.crearPA(NombrePA.getText()
+    s.crearPA(NombrePA.getText()
             ,s.crearFecha(jTextField5.getText(),jTextField4.getText(),jTextField3.getText())
             ,s.crearFecha(jTextField8.getText(),jTextField6.getText(),jTextField7.getText()));
-    x.setActividadesDelPaquete(s.getActividades());
-    x.setElementos(s.getElementos());
-    x.setPrecio(x.CalcPrecio());
-    x.CalcRestEdad();
-    Elementos1.setText("$"+x.CalcPrecio());
+    jTextArea1.setText(s.getpaqAventurero().toString());
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void NombrePA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombrePA1ActionPerformed
@@ -555,34 +544,18 @@ public class GUIAgregarPA extends javax.swing.JFrame {
         Elementos.setText(s.elementosToString());     
     }//GEN-LAST:event_BtnAgregar3ActionPerformed
 
-    private void Elementos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Elementos1ActionPerformed
-        
-    }//GEN-LAST:event_Elementos1ActionPerformed
-
     private void BtnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar4ActionPerformed
-    
-        
-        try {
-            s.AgregarPaqueteS(x);
+ try {
+            s.AgregarPaqueteS(s.getpaqAventurero());
+            
         } catch (Exception ex) {
             Logger.getLogger(GUIAgregarPA.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    // Depuración: Verificar los paquetes en la lista
+
     System.out.println("Paquetes en la lista después de agregar:");
     for (PaqueteTuristico paquete : s.getPaquetes()) {
         System.out.println(paquete.getNombre());
-    }
-    
-    try {
-        PaqueteTuristico encontrado = s.BuscarPaqueteS(x.getNombre(),PaqueteAventurero.class);
-        if (encontrado != null) {
-            JOptionPane.showMessageDialog(null, "Paquete encontrado: " + encontrado.getNombre());
-        } else {
-            JOptionPane.showMessageDialog(null, "Paquete no encontrado");
-        }
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Error al buscar el paquete");
+        
     }
     }//GEN-LAST:event_BtnAgregar4ActionPerformed
 
@@ -597,14 +570,12 @@ public class GUIAgregarPA extends javax.swing.JFrame {
     private javax.swing.JButton BtnAgregar3;
     private javax.swing.JButton BtnAgregar4;
     private javax.swing.JTextField Elementos;
-    private javax.swing.JTextField Elementos1;
     private javax.swing.JTextField NombrePA;
     private javax.swing.JTextField NombrePA1;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox24;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -620,6 +591,8 @@ public class GUIAgregarPA extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

@@ -71,7 +71,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(460, 360));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Personal\\Desktop\\Universidad\\Programacion\\PJava\\ProyectoEmpresariales_V1\\src\\main\\java\\data\\LogoTurismo.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Personal\\Desktop\\Universidad\\Git\\ProyectoEmpresariales_V1\\src\\main\\java\\data\\LogoTurismo.png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -139,8 +139,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         MenuPaqueteAventurero.add(ListarPaqueteAventurero);
         MenuPaqueteAventurero.add(jSeparator8);
 
-        CalcularPrecioPA.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        CalcularPrecioPA.setText("Calcular Nivel De Dificultad PA");
+        CalcularPrecioPA.setText("Cambiar Elemento");
         CalcularPrecioPA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CalcularNvlDifActionPerformed(evt);
@@ -189,8 +188,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         PaqueteCultural.add(ListarPaqueteCultural);
         PaqueteCultural.add(jSeparator4);
 
-        CalcularPrecioPC.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        CalcularPrecioPC.setText("Calcular Nivel De Acompañamiento PC");
+        CalcularPrecioPC.setText("Calcular Guia");
         CalcularPrecioPC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CalcularNvlAcomActionPerformed(evt);
@@ -274,22 +272,22 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarPaqueteAventureroActionPerformed
 
     private void AgregarPaqueteCulturalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarPaqueteCulturalActionPerformed
-        GUIAgregarPC agregarPC = new GUIAgregarPC();
+        GUIAgregarPC agregarPC = new GUIAgregarPC(s);
                 agregarPC.setVisible(true);
     }//GEN-LAST:event_AgregarPaqueteCulturalActionPerformed
 
     private void EliminarPaqueteCulturalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPaqueteCulturalActionPerformed
-        GUIEliminarPC eliminarPC = new GUIEliminarPC();
+        GUIEliminarPC eliminarPC = new GUIEliminarPC(s);
                 eliminarPC.setVisible(true);
     }//GEN-LAST:event_EliminarPaqueteCulturalActionPerformed
 
     private void BuscarPaqueteCulturalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPaqueteCulturalActionPerformed
-        GUIBuscarPC buscarPC = new GUIBuscarPC();
+        GUIBuscarPC buscarPC = new GUIBuscarPC(s);
                 buscarPC.setVisible(true);
     }//GEN-LAST:event_BuscarPaqueteCulturalActionPerformed
 
     private void ListarPaqueteCulturalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarPaqueteCulturalActionPerformed
-        GUIListarPC listarPC = new GUIListarPC();
+        GUIListarPC listarPC = new GUIListarPC(s);
                 listarPC.setVisible(true);
     }//GEN-LAST:event_ListarPaqueteCulturalActionPerformed
 
@@ -298,11 +296,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_adActionPerformed
 
     private void CalcularNvlAcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularNvlAcomActionPerformed
-        JOptionPane.showMessageDialog(this, "Calculo");
+        GUICambiarGuia cambiar = new GUICambiarGuia(s);
+                cambiar.setVisible(true);
     }//GEN-LAST:event_CalcularNvlAcomActionPerformed
 
     private void CalcularNvlDifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularNvlDifActionPerformed
-        JOptionPane.showMessageDialog(this, "Calculo");
+        GUICambiarElemento cambiar = new GUICambiarElemento(s);
+                cambiar.setVisible(true);
     }//GEN-LAST:event_CalcularNvlDifActionPerformed
 
     private void aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aActionPerformed

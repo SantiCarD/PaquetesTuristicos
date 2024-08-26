@@ -21,7 +21,6 @@ public class GUIEliminarPA extends javax.swing.JFrame {
      */
     
     private ServicioPaquete s;
-    private PaqueteAventurero PA;
     public GUIEliminarPA(ServicioPaquete s) {
         initComponents();
         setLocationRelativeTo(this);
@@ -333,25 +332,25 @@ public class GUIEliminarPA extends javax.swing.JFrame {
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
         try {
-            PA = s.BuscarPaqueteS(jTextField1.getText(), PaqueteAventurero.class);     // TODO add your handling code here:
+            s.BuscarPaqueteS(jTextField1.getText(), PaqueteAventurero.class);     // TODO add your handling code here:
         } catch (Exception ex) {
             Logger.getLogger(GUIBuscarPA.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        jTextField2.setText(PA.getNombre());
-        jTextField4.setText(PA.getPrecio().toString());
-        jTextField3.setText(PA.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(PA.getFechaFin().toString());
-        jTextField6.setText(String.valueOf(PA.getRestriccionEdad()));
-        jTextField7.setText(PA.getElementos().toStringE());
-        jTextField9.setText(PA.toStringE());
+        jTextField2.setText(s.getpaqAventurero().getNombre());
+        jTextField4.setText(s.getpaqAventurero().getPrecio().toString());
+        jTextField3.setText(s.getpaqAventurero().getFechaInicio().format(DateTimeFormatter.ISO_DATE));
+        jTextField5.setText(s.getpaqAventurero().getFechaFin().toString());
+        jTextField6.setText(String.valueOf(s.getpaqAventurero().getRestriccionEdad()));
+        jTextField7.setText(s.getpaqAventurero().getElementos().toStringE());
+        jTextField9.setText(s.getpaqAventurero().toStringE());
         
         
         
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void BtnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscar2ActionPerformed
-            // TODO add your handling code here:
+    s.eliminarPaqueteS(jTextField1.getText(), PaqueteAventurero.class);            // TODO add your handling code here:
     }//GEN-LAST:event_BtnBuscar2ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

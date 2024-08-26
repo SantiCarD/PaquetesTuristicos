@@ -5,10 +5,8 @@
 package view;
 
 import java.time.format.DateTimeFormatter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.PaqueteAventurero;
-import model.PaqueteTuristico;
 import services.ServicioPaquete;
 
 /**
@@ -21,7 +19,6 @@ public class GUIBuscarPA extends javax.swing.JFrame {
      * Creates new form GUIBuscarPA
      */
     private ServicioPaquete s;
-    private PaqueteAventurero PA;
     public GUIBuscarPA(ServicioPaquete s) {
         initComponents();
         setLocationRelativeTo(this);
@@ -320,18 +317,18 @@ public class GUIBuscarPA extends javax.swing.JFrame {
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
         try {
-            PA = s.BuscarPaqueteS(jTextField1.getText(), PaqueteAventurero.class);     // TODO add your handling code here:
+        s.BuscarPaqueteS(jTextField1.getText(), PaqueteAventurero.class);     // TODO add your handling code here:
         } catch (Exception ex) {
-            Logger.getLogger(GUIBuscarPA.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No existe un paquete con el nombre: "+jTextField1.getText());
         }
         
-        jTextField2.setText(PA.getNombre());
-        jTextField4.setText(PA.getPrecio().toString());
-        jTextField3.setText(PA.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(PA.getFechaFin().toString());
-        jTextField6.setText(String.valueOf(PA.getRestriccionEdad()));
-        jTextField7.setText(PA.getElementos().toStringE());
-        jTextField8.setText(PA.toStringE());
+        jTextField2.setText(s.getpaqAventurero().getNombre());
+        jTextField4.setText(s.getpaqAventurero().getPrecio().toString());
+        jTextField3.setText(s.getpaqAventurero().getFechaInicio().format(DateTimeFormatter.ISO_DATE));
+        jTextField5.setText(s.getpaqAventurero().getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField6.setText(String.valueOf(s.getpaqAventurero().getRestriccionEdad()));
+        jTextField7.setText(s.getpaqAventurero().getElementos().toStringE());
+        jTextField8.setText(s.getpaqAventurero().toStringE());
         
     }//GEN-LAST:event_BtnBuscarActionPerformed
 

@@ -5,6 +5,7 @@
 package model;
 
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -67,16 +68,19 @@ public class PaqueteAventurero extends PaqueteTuristico{
 
     @Override
     public String toString() {
-        return "PaqueteAventurero{" + "RestriccionEdad=" + RestriccionEdad + ", Elementos=" + Elementos + '}';
+        return "PaqueteAventurero: " +"Nombre= "+ getNombre()+ " Precio= "+ getPrecio()+ " Fecha de Inicio=" + getFechaInicio()+" Fecha de Fin=" + getFechaFin() +" Actividades=" + toStringE()+" RestriccionEdad= " + RestriccionEdad + ", Elementos=" + Elementos + '}';
     }
+    
+    
+
     
     
     
     @Override
-    public double CalcPrecio() {
+    public double calcPrecio() {
         double precio = PRECIO_BASE;
         
-        for(String a : ActividadesDelPaquete)
+        for(String a : actividadesDelPaquete)
         {
             switch (a) {
                 case "Surf" -> precio += PRECIO_SURF;
@@ -88,14 +92,16 @@ public class PaqueteAventurero extends PaqueteTuristico{
                 default -> {}
             }
         }
-        this.Precio=precio;
+        this.precio=precio;
         return precio;
     }
+    
+    
     
         public int CalcRestEdad()
     {
         int x = 0;
-        for(String a : ActividadesDelPaquete)
+        for(String a : actividadesDelPaquete)
         {
             switch (a) {
                 case "Surf" -> x = 12;
@@ -116,6 +122,29 @@ public class PaqueteAventurero extends PaqueteTuristico{
     {   
         return actividades;
     }
-    
-    
+
+    @Override
+    public void cambiar(int x,String y) { 
+        
+        
+            if(x==1)
+            {
+                Elementos.setElemento1(y);
+            }
+            else if(x==2)
+            {
+            Elementos.setElemento2(y);
+            }
+            else if(x==3)
+            Elementos.setElemento3(y);
+            else if(x==4)
+            {
+            Elementos.setElemento4(y); 
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "No existe un 5 elemento");
+            }
+    }
+
 }

@@ -39,8 +39,7 @@ public class GUIListarPA extends javax.swing.JFrame {
     private void listarPaquetes() {
     DefaultTableModel model = (DefaultTableModel) TablaPA.getModel();
     model.setRowCount(0); 
-
-    // Obtener los datos de los paquetes
+    
     ArrayList<PaqueteTuristico> paquetes = s.getPaquetes();
     
     for (PaqueteTuristico paquete : paquetes) {

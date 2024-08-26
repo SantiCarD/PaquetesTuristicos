@@ -13,64 +13,65 @@ import java.util.Date;
  */
 public abstract class PaqueteTuristico {
     
-    protected String Nombre;
-    protected Double Precio;
-    protected LocalDate FechaInicio;
-    protected LocalDate FechaFin;
-    protected String[] ActividadesDelPaquete;
+    protected String nombre;
+    protected Double precio;
+    protected LocalDate fechaInicio;
+    protected LocalDate fechaFin;
+    protected String[] actividadesDelPaquete;
     
 
     public PaqueteTuristico(String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
-        this.Nombre = Nombre;
-        this.Precio = Precio;
-        this.FechaInicio = FechaInicio;
-        this.FechaFin = FechaFin;
-        this.ActividadesDelPaquete=ActividadesDelPaquete;
+        this.nombre = Nombre;
+        this.precio = Precio;
+        this.fechaInicio = FechaInicio;
+        this.fechaFin = FechaFin;
+        this.actividadesDelPaquete=ActividadesDelPaquete;
     }
 
     
     
-    public abstract double CalcPrecio();
+    public abstract double calcPrecio();
+    public abstract void cambiar(int x, String y);
     
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Double getPrecio() {
-        return Precio;
+        return precio;
     }
 
-    public void setPrecio(Double Precio) {
-        this.Precio = Precio;
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
     public LocalDate getFechaInicio() {
-        return FechaInicio;
+        return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDate FechaInicio) {
-        this.FechaInicio = FechaInicio;
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
     public LocalDate getFechaFin() {
-        return FechaFin;
+        return fechaFin;
     }
 
-    public void setFechaFin(LocalDate FechaFin) {
-        this.FechaFin = FechaFin;
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public String[] getActividadesDelPaquete() {
-        return ActividadesDelPaquete;
+        return actividadesDelPaquete;
     }
 
-    public void setActividadesDelPaquete(String[] ActividadesDelPaquete) {
-        this.ActividadesDelPaquete = ActividadesDelPaquete;
+    public void setActividadesDelPaquete(String[] actividadesDelPaquete) {
+        this.actividadesDelPaquete = actividadesDelPaquete;
     }
 
     
