@@ -16,7 +16,6 @@ import services.ServicioPaquete;
  */
 public class GUICambiarGuia extends javax.swing.JFrame {
     private ServicioPaquete s;
-    private PaqueteCultural pc;
     /**
      * Creates new form CambiarGuia
      */

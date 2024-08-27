@@ -13,7 +13,7 @@ import model.ReservaEquipamiento;
  */
 public class ServicioEquipamiento {
     
-        private String[] elementos;
+       private String[] elementos;
 
     public ServicioEquipamiento(String elementoss[]) {
         elementos =  new String[4];

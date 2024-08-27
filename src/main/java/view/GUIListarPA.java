@@ -45,6 +45,20 @@ public class GUIListarPA extends javax.swing.JFrame {
     for (PaqueteTuristico paquete : paquetes) {
          if (paquete instanceof PaqueteAventurero) {
         PaqueteAventurero paqueteAventurero = (PaqueteAventurero) paquete;
+        if(s.verificarElementos(paqueteAventurero.getElementos().getElemento1()))
+        {
+            model.addRow(new Object[]{
+            paqueteAventurero.getNombre(),
+            paqueteAventurero.getRestriccionEdad()+" Años",
+            "$"+paqueteAventurero.getPrecio(),
+            paqueteAventurero.getFechaInicio(),
+            paqueteAventurero.getFechaFin(),
+            "No Hay Elementos",
+            paqueteAventurero.toStringE()
+        });
+        }
+        else
+        {
             model.addRow(new Object[]{
             paqueteAventurero.getNombre(),
             paqueteAventurero.getRestriccionEdad()+" Años",
@@ -53,7 +67,9 @@ public class GUIListarPA extends javax.swing.JFrame {
             paqueteAventurero.getFechaFin(),
             paqueteAventurero.getElementos().toStringE(),
             paqueteAventurero.toStringE()
-        })
+        });
+        }
+            
                 ;
     } 
          else {
@@ -94,6 +110,7 @@ public class GUIListarPA extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ListarPA");
 
+        TablaPA.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         TablaPA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -138,7 +155,7 @@ public class GUIListarPA extends javax.swing.JFrame {
         }
 
         jLabel1.setBackground(new java.awt.Color(50, 33, 20));
-        jLabel1.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Stencil", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Listar Paquete Aventurero");
         jLabel1.setToolTipText("");
@@ -147,7 +164,7 @@ public class GUIListarPA extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(143, 220, 54));
 
-        jButton1.setFont(new java.awt.Font("Segoe Print", 2, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe Print", 2, 10)); // NOI18N
         jButton1.setText("Listar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,17 +176,17 @@ public class GUIListarPA extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(484, 484, 484)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(346, 346, 346))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(166, 235, 248));
@@ -178,7 +195,7 @@ public class GUIListarPA extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 970, Short.MAX_VALUE)
+            .addGap(0, 770, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,14 +206,14 @@ public class GUIListarPA extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(248, 248, 248)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(201, 201, 201))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -212,7 +229,7 @@ public class GUIListarPA extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 330, Short.MAX_VALUE)))
+                    .addGap(0, 299, Short.MAX_VALUE)))
         );
 
         pack();
@@ -222,38 +239,6 @@ public class GUIListarPA extends javax.swing.JFrame {
          listarPaquetes();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIListarPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIListarPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIListarPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIListarPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-       
-        
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaPA;

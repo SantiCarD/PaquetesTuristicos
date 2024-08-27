@@ -15,7 +15,6 @@ import services.ServicioPaquete;
 public class GUICambiarElemento extends javax.swing.JFrame {
 
         private ServicioPaquete s;
-        private PaqueteAventurero pa;
     public GUICambiarElemento(ServicioPaquete s) {
         initComponents();
         setLocationRelativeTo(this);
@@ -181,7 +180,7 @@ public class GUICambiarElemento extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            pa = s.BuscarPaqueteS(jTextField2.getText(), PaqueteAventurero.class);
+            s.buscarPaqueteAventurero(jTextField2.getText());
             s.cambiarElemento(jTextField2.getText(),jTextField4.getText(), Integer.parseInt(jTextField6.getText()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No pude padre");

@@ -96,6 +96,11 @@ public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
         
         return (getActividadesDelPaquete()[0]+ ", " + getActividadesDelPaquete()[1]+ ", " + getActividadesDelPaquete()[2]+ ", " + getActividadesDelPaquete()[3]);
     }
+    
+    public String toString() {
+        return "PaqueteCultural: " +"Nombre= "+ getNombre()+ " Precio= "+ getPrecio()+ " Fecha de Inicio=" + getFechaInicio()+" Fecha de Fin=" + getFechaFin() +" Actividades=" + toStringE()+" Nombre del Guia= " + nombreGuia +" Nivel de acompañamiento= " + nvlAcomp +'}';
+    }
+    
     public static String[] posiblesActividades()
     {   
         return actividades;
@@ -126,7 +131,7 @@ public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
     public Boolean condonar(boolean x) {
         if(x==true)
         {
-          setPrecio(precio);
+          setPrecio(0.0);
         }
         return x;
     }
