@@ -53,8 +53,10 @@ public class GUIListarPC extends javax.swing.JFrame {
                     paqueteCultural.getFechaFin(),
                     paqueteCultural.toStringE()
                 });
-            } else {
-            }
+            }  else {
+             
+             System.out.println("El paquete "+paquete+" no es del tipo buscado");;
+         }
         }
     }
 

@@ -33,6 +33,7 @@ public class GUIDesarrolladores extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Desarrolladores");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

@@ -20,6 +20,14 @@ public class PaqueteAventurero extends PaqueteTuristico{
     private final static double PRECIO_SURF = 25000;
     private final static double PRECIO_EXPLORACION = 35000;
     private final static double PRECIO_PASEO = 10000;
+    
+    private final static double PRECIO_EQUIPO_ESCALADA = 10000;
+    private final static double PRECIO_BOTAS_SENDERISMO = 5000;
+    private final static double PRECIO_CHAQUETA = 5000;
+    private final static double PRECIO_EQUIPO_RAFTING = 15000;
+    private final static double PRECIO_CAMPING = 20000;
+    private final static double PRECIO_TABLA = 10000;
+    private final static double PRECIO_BICICLETAS = 20000;
 
     private int RestriccionEdad;
     private ReservaEquipamiento Elementos;
@@ -29,6 +37,11 @@ public class PaqueteAventurero extends PaqueteTuristico{
         super(Nombre, Precio, FechaInicio, FechaFin, ActividadesDelPaquete);
         this.RestriccionEdad = RestriccionEdad;
         this.Elementos = Elementos;
+    }
+    
+    public PaqueteAventurero(int RestriccionEdad, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
+        super(Nombre, Precio, FechaInicio, FechaFin, ActividadesDelPaquete);
+        this.RestriccionEdad = RestriccionEdad;
     }
      
      static {
@@ -65,10 +78,20 @@ public class PaqueteAventurero extends PaqueteTuristico{
         
         return (getActividadesDelPaquete()[0]+ ", " + getActividadesDelPaquete()[1]+ ", " + getActividadesDelPaquete()[2]+ ", " + getActividadesDelPaquete()[3]);
     }
+    
+    public String toStringEs(ReservaEquipamiento e) {
+        
+        return (e.getElemento1()+ ", " + e.getElemento2()+ ", " + e.getElemento3()+ ", " + e.getElemento4());
+    }
+    
+    
 
-    @Override
-    public String toString() {
-        return "PaqueteAventurero: " +"Nombre= "+ getNombre()+ " Precio= "+ getPrecio()+ " Fecha de Inicio=" + getFechaInicio()+" Fecha de Fin=" + getFechaFin() +" Actividades=" + toStringE()+" RestriccionEdad= " + RestriccionEdad + ", Elementos=" + Elementos + '}';
+    public String toStringcon() {
+        return "PaqueteAventurero: " +"Nombre= "+ getNombre()+ ", Precio= "+ getPrecio()+ ", Fecha de Inicio=" + getFechaInicio()+", Fecha de Fin=" + getFechaFin() +", Actividades=" + toStringE()+", RestriccionEdad= " + RestriccionEdad + ", Elementos=" + getElementos().toStringE() + '}';
+    }
+    
+    public String toStringsin() {
+        return "PaqueteAventurero: " +"Nombre= "+ getNombre()+ ", Precio= "+ getPrecio()+ ", Fecha de Inicio=" + getFechaInicio()+", Fecha de Fin=" + getFechaFin() +", Actividades=" + toStringE()+", RestriccionEdad= " + RestriccionEdad;
     }
     
     
@@ -92,6 +115,21 @@ public class PaqueteAventurero extends PaqueteTuristico{
                 default -> {}
             }
         }
+        
+        for (String a : Elementos.getElementoss())
+        {
+            switch (a) {
+                case "Equipo de Escalada" -> precio += PRECIO_EQUIPO_ESCALADA;
+                case "Botas de Senderismo" -> precio += PRECIO_BOTAS_SENDERISMO;
+                case "Chaquetas Impermeables" -> precio += PRECIO_CHAQUETA;
+                case "Equipo de Rafting" -> precio += PRECIO_EQUIPO_RAFTING;
+                case "Carpas y Equipos de Camping" -> precio+= PRECIO_CAMPING;
+                case "Tabla de Surf" -> precio+= PRECIO_TABLA;
+                case "Bicicletas de Montaña y Cascos" -> precio+= PRECIO_BICICLETAS;
+                default -> {}
+            }
+        }
+        
         this.precio=precio;
         return precio;
     }

@@ -111,6 +111,11 @@ public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
         return Guias;
     }
     
+    public String toStringEs()
+    {
+        return (posiblesGuias()[0]+", "+ posiblesGuias()[1]+", "+ posiblesGuias()[2]);
+    }
+    
     public int NvlAcom()
     {
         int x = 0;

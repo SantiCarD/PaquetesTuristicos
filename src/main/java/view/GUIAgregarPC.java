@@ -68,8 +68,9 @@ public class GUIAgregarPC extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         BtnAgregar = new javax.swing.JButton();
         BtnAgregar2 = new javax.swing.JButton();
-        Elementos1 = new javax.swing.JTextField();
         jCheckBox6 = new javax.swing.JCheckBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AgregarPC");
@@ -187,7 +188,7 @@ public class GUIAgregarPC extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jLabel3)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,15 +235,6 @@ public class GUIAgregarPC extends javax.swing.JFrame {
             }
         });
 
-        Elementos1.setEditable(false);
-        Elementos1.setBackground(new java.awt.Color(255, 255, 255));
-        Elementos1.setFont(new java.awt.Font("Segoe UI", 2, 8)); // NOI18N
-        Elementos1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Elementos1ActionPerformed(evt);
-            }
-        });
-
         jCheckBox6.setBackground(new java.awt.Color(204, 255, 255));
         jCheckBox6.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jCheckBox6.setText("Condonable");
@@ -253,6 +245,10 @@ public class GUIAgregarPC extends javax.swing.JFrame {
                 jCheckBox6ActionPerformed(evt);
             }
         });
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -296,23 +292,25 @@ public class GUIAgregarPC extends javax.swing.JFrame {
                                             .addComponent(BtnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel9))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jTextField1)
-                                            .addComponent(jComboBox1, 0, 221, Short.MAX_VALUE))
+                                            .addComponent(jComboBox1, 0, 176, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(BtnAgregar1))
-                                    .addComponent(NombrePA1))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(NombrePA1)))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Elementos1)))
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -332,7 +330,7 @@ public class GUIAgregarPC extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(NombrePA1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 21, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -348,13 +346,13 @@ public class GUIAgregarPC extends javax.swing.JFrame {
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
                 .addComponent(BtnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox6)
-                .addGap(4, 4, 4)
-                .addComponent(Elementos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -363,7 +361,7 @@ public class GUIAgregarPC extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 45, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -377,6 +375,7 @@ public class GUIAgregarPC extends javax.swing.JFrame {
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         
             s.añadirPaqueteCultural(s.getpaqCultural());
+            JOptionPane.showMessageDialog(null, "Se agrego el paquete");
             dispose();
 
     System.out.println("Paquetes en la lista después de agregar:");
@@ -415,7 +414,7 @@ public class GUIAgregarPC extends javax.swing.JFrame {
             jCheckBox6.setEnabled(true);
             BtnAgregar2.setEnabled(false);
             BtnAgregar.setEnabled(true);
-            Elementos1.setText(s.getpaqCultural().toString());
+            jTextArea1.setText(s.getpaqCultural().toString());
             
         } catch (Exception ex) {
             Logger.getLogger(GUIAgregarPC.class.getName()).log(Level.SEVERE, null, ex);
@@ -425,17 +424,13 @@ public class GUIAgregarPC extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BtnAgregar2ActionPerformed
 
-    private void Elementos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Elementos1ActionPerformed
-
-    }//GEN-LAST:event_Elementos1ActionPerformed
-
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
 
             if(jCheckBox6.isSelected())
             {
                 try {
                     s.condonable(s.getpaqCultural(), jCheckBox6.isSelected());
-                    Elementos1.setText(s.getpaqCultural().toString());
+                    jTextArea1.setText(s.getpaqCultural().toString());
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Llene los espacios primero");
@@ -478,7 +473,6 @@ public class GUIAgregarPC extends javax.swing.JFrame {
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnAgregar1;
     private javax.swing.JButton BtnAgregar2;
-    private javax.swing.JTextField Elementos1;
     private javax.swing.JTextField NombrePA1;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -493,6 +487,8 @@ public class GUIAgregarPC extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

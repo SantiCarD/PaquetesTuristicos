@@ -166,10 +166,14 @@ public class ServicioPaquete {
         }
     }
     
-    public boolean verificarElementos(String x)
+    public boolean verificar(String x)
     {
         boolean y=false;
         if(x==null)
+        {
+            y=true;
+        }
+        else if(x=="")
         {
             y=true;
         }
@@ -195,15 +199,17 @@ public class ServicioPaquete {
 
     // CRUD
 
-    public PaqueteAventurero crearPA(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
+    public PaqueteAventurero crearPAconElementos(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
         try {
             validarDatosPaquete(nombre, fechaInicio, fechaFin);
             
+
             PA = new PaqueteAventurero(0, getElementos(), nombre, 0.0, fechaInicio, fechaFin, actividades);
             PA.setActividadesDelPaquete(actividades);
+            PA.setElementos(getElementos());
             PA.setPrecio(PA.calcPrecio());
             PA.setRestriccionEdad(PA.CalcRestEdad());
-            PA.setElementos(getElementos());
+            
 
             actividades = new String[4];
             
@@ -215,6 +221,31 @@ public class ServicioPaquete {
            
         }
     }
+    
+    public PaqueteAventurero crearPAsinElementos(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
+        try {
+            validarDatosPaquete(nombre, fechaInicio, fechaFin);
+            
+
+            PA = new PaqueteAventurero(0, getElementos(), nombre, 0.0, fechaInicio, fechaFin, actividades);
+            PA.setActividadesDelPaquete(actividades);
+            ReservaEquipamiento x= new ReservaEquipamiento("", "","", "");
+            PA.setElementos(x);
+            PA.setPrecio(PA.calcPrecio());
+            PA.setRestriccionEdad(PA.CalcRestEdad());
+            
+
+            actividades = new String[4];
+            
+            return PA;
+
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
+            throw new Exception("No selecciono las 4 actividades" + e.getMessage(), e);
+           
+        }
+    }
+    
 
     public PaqueteCultural crearPC(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
         try {

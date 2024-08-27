@@ -7,6 +7,7 @@ package view;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.PaqueteAventurero;
 import services.ServicioPaquete;
 
@@ -329,19 +330,33 @@ public class GUIEliminarPA extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        try {
-            s.buscarPaqueteAventurero(jTextField1.getText());     // TODO add your handling code here:
+          try {
+            PaqueteAventurero a = s.buscarPaqueteAventurero(jTextField1.getText());  
+            if(s.verificar(a.getElementos().getElemento1()))
+        {
+           jTextField2.setText(a.getNombre());
+        jTextField4.setText(a.getPrecio().toString());
+        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
+        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
+        jTextField7.setText("No hay Elementos");
+        jTextField9.setText(a.toStringE());
+        }
+        else
+        {
+        jTextField2.setText(a.getNombre());
+        jTextField4.setText(a.getPrecio().toString());
+        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
+        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
+        jTextField7.setText(a.getElementos().toStringE());
+        jTextField9.setText(a.toStringE());
+        }
         } catch (Exception ex) {
-            Logger.getLogger(GUIBuscarPA.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No existe un paquete con el nombre: "+jTextField1.getText());
         }
         
-        jTextField2.setText(s.getpaqAventurero().getNombre());
-        jTextField4.setText(s.getpaqAventurero().getPrecio().toString());
-        jTextField3.setText(s.getpaqAventurero().getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(s.getpaqAventurero().getFechaFin().toString());
-        jTextField6.setText(String.valueOf(s.getpaqAventurero().getRestriccionEdad()));
-        jTextField7.setText(s.getpaqAventurero().getElementos().toStringE());
-        jTextField9.setText(s.getpaqAventurero().toStringE());
+        
         
         
         

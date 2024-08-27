@@ -218,7 +218,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         });
 
-        Ayuda.setText("Me aiudas?");
+        Ayuda.setText("Contacto");
         Ayuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AyudaActionPerformed(evt);

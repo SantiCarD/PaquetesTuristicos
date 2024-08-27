@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Personal
  */
 public class ReservaEquipamiento {
-    
+
     private String elemento1;
     private String elemento2;
     private String elemento3;
@@ -67,17 +68,26 @@ public class ReservaEquipamiento {
         return elemento1+", " + elemento2 + ", " + elemento3 + ", " + elemento4;
     }
      
+    public String[] getElementoss()
+    {
+        String[] x = new String[4];
+        x[0]=getElemento1();
+        x[1]=getElemento2();
+        x[2]=getElemento3();
+        x[3]=getElemento4();
+        return x;
+    }
     
      
      static {
         elementos = new String[7]; 
-        elementos[0] = "yo";
-        elementos[1] = "tu";
-        elementos[2] = "el";
-        elementos[3] = "ella";
-        elementos[4] = "ellos";
-        elementos[5] = "no";
-        elementos[6] = "si";
+        elementos[0] = "Equipo de Escalada";
+        elementos[1] = "Botas de Senderismo";
+        elementos[2] = "Chaquetas Impermeables";
+        elementos[3] = "Equipo de Rafting";
+        elementos[4] = "Carpas y Equipos de Camping";
+        elementos[5] = "Tabla de Surf";
+        elementos[6] = "Bicicletas de Montaña y Cascos";
     }
      
      public static String[] posiblesElementos()

@@ -173,7 +173,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="Ayuda">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Me aiudas?"/>
+                <Property name="text" type="java.lang.String" value="Contacto"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AyudaActionPerformed"/>

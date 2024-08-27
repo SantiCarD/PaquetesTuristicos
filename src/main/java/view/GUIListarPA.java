@@ -45,7 +45,7 @@ public class GUIListarPA extends javax.swing.JFrame {
     for (PaqueteTuristico paquete : paquetes) {
          if (paquete instanceof PaqueteAventurero) {
         PaqueteAventurero paqueteAventurero = (PaqueteAventurero) paquete;
-        if(s.verificarElementos(paqueteAventurero.getElementos().getElemento1()))
+        if(s.verificar(paqueteAventurero.getElementos().getElemento1()))
         {
             model.addRow(new Object[]{
             paqueteAventurero.getNombre(),
@@ -73,7 +73,8 @@ public class GUIListarPA extends javax.swing.JFrame {
                 ;
     } 
          else {
-             JOptionPane.showMessageDialog(null, "Nopuedo");
+             
+             System.out.println("El paquete "+paquete+" no es del tipo buscado");;
          }
     }
 }

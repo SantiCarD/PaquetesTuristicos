@@ -122,6 +122,11 @@ public class GUIEliminarPC extends javax.swing.JFrame {
 
         jTextField6.setEditable(false);
         jTextField6.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Nvl Acompañamiento:");
@@ -328,21 +333,27 @@ public class GUIEliminarPC extends javax.swing.JFrame {
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
     try {
-            s.buscarPaqueteCultural(jTextField1.getText());     // TODO add your handling code here:
+            PaqueteCultural c = s.buscarPaqueteCultural(jTextField1.getText());
+            jTextField2.setText(c.getNombre());
+            jTextField4.setText(c.getPrecio().toString());
+            jTextField6.setText(c.getNombreGuia());
+            jTextField3.setText(c.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
+            jTextField5.setText(c.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+            jTextField7.setText(c.getNvlAcomp()+"");
+            jTextField9.setText(c.toStringE());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No existe un paquete con el nombre: "+jTextField1.getText());
         }
-        jTextField2.setText(s.getpaqCultural().getNombre());
-        jTextField4.setText(s.getpaqCultural().getPrecio().toString());
-        jTextField3.setText(s.getpaqCultural().getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(s.getpaqCultural().getFechaFin().toString());
-        jTextField6.setText(s.getpaqCultural().getNvlAcomp()+"");
-        jTextField9.setText(s.getpaqCultural().toStringE());                                   // TODO add your handling code here:
+                                           // TODO add your handling code here:
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void BtnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscar2ActionPerformed
     s.eliminarPaqueteCultural(jTextField1.getText());        // TODO add your handling code here:
     }//GEN-LAST:event_BtnBuscar2ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments
