@@ -216,8 +216,8 @@ public class ServicioPaquete {
             return PA;
 
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
-            throw new Exception("No selecciono las 4 actividades" + e.getMessage(), e);
+             JOptionPane.showMessageDialog(null, "Falta llenar informacion");
+            throw new Exception("Falta llenar informacion" + e.getMessage(), e);
            
         }
     }
@@ -240,8 +240,8 @@ public class ServicioPaquete {
             return PA;
 
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
-            throw new Exception("No selecciono las 4 actividades" + e.getMessage(), e);
+             JOptionPane.showMessageDialog(null, "Falta llenar informacion");
+            throw new Exception("Falta llenar informacion" + e.getMessage(), e);
            
         }
     }
@@ -263,8 +263,8 @@ public class ServicioPaquete {
 
         } 
         catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
-            throw new Exception("No selecciono las 4 actividades" + e.getMessage(), e);
+             JOptionPane.showMessageDialog(null, "Falta llenar informacion");
+            throw new Exception("Falta llenar informacion" + e.getMessage(), e);
            
         }
     }

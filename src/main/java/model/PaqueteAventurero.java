@@ -79,6 +79,11 @@ public class PaqueteAventurero extends PaqueteTuristico{
         return (getActividadesDelPaquete()[0]+ ", " + getActividadesDelPaquete()[1]+ ", " + getActividadesDelPaquete()[2]+ ", " + getActividadesDelPaquete()[3]);
     }
     
+    public String toStringElP() {
+        
+        return (ReservaEquipamiento.posiblesElementos()[0]+ ", " + ReservaEquipamiento.posiblesElementos()[1]+ ", " + ReservaEquipamiento.posiblesElementos()[2]+ ", " + ReservaEquipamiento.posiblesElementos()[3]+ ", " + ReservaEquipamiento.posiblesElementos()[4]+ ", " + ReservaEquipamiento.posiblesElementos()[5]+ ", " + getElementos().posiblesElementos()[6]);
+    }
+    
     public String toStringEs(ReservaEquipamiento e) {
         
         return (e.getElemento1()+ ", " + e.getElemento2()+ ", " + e.getElemento3()+ ", " + e.getElemento4());

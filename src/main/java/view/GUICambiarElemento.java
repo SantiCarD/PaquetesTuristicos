@@ -322,7 +322,7 @@ public class GUICambiarElemento extends javax.swing.JFrame {
              a = s.buscarPaqueteAventurero(jTextField2.getText());
                 jTextField7.setText(a.toStringEs(a.getElementos()));
                 jButton2.setEnabled(true);
-                jTextArea1.setText(a.toStringEs(a.getElementos()));
+                jTextArea2.setText(a.toStringElP());
             }
                 
                

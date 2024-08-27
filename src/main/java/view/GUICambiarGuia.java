@@ -231,7 +231,9 @@ public class GUICambiarGuia extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         try {
 
-            s.cambiarGuia(jTextField16.getText(),jTextField7.getText());
+            s.cambiarGuia(jTextField16.getText(),jTextField17.getText());
+            JOptionPane.showMessageDialog(null, "Cambiado");
+            dispose();
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No pude padre");
