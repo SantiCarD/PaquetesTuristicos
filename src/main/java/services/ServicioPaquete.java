@@ -11,19 +11,52 @@ import model.PaqueteAventurero;
 import model.PaqueteCultural;
 import model.PaqueteTuristico;
 import model.ReservaEquipamiento;
+import view.GUIAgregarPA;
+import view.IInteresadaPA;
+import view.IInteresadaPC;
+import view.IInteresadaRE;
 
 public class ServicioPaquete {
+    private ArrayList<IInteresadaPA> interesadasPA;
+    private ArrayList<IInteresadaPC> interesadasPC;
     private ArrayList<PaqueteTuristico> paquetes;
     private String[] actividades;
 
     public ServicioPaquete() {
         paquetes = new ArrayList<PaqueteTuristico>();
+        interesadasPA = new ArrayList<>();
+        interesadasPC = new ArrayList<>();
         actividades = new String[4];  
     }
 
     public ArrayList<PaqueteTuristico> getPaquetes() {
         return paquetes;
     }
+    
+    public void agregarInteresadaPA(IInteresadaPA ipa)
+    {
+        interesadasPA.add(ipa);
+    }
+    
+    public void agregarInteresadaPC(IInteresadaPC ipa)
+    {
+        interesadasPC.add(ipa);
+    }
+    
+    public void avisarPA()
+    {
+        for (IInteresadaPA x : interesadasPA) {
+            x.actualizarPA();
+        }
+    }
+    public void avisarPC()
+    {
+        for (IInteresadaPC x : interesadasPC) {
+            x.actualizarPC();
+        }
+    }
+    
+    
 
     public void limpiarListas() {
         for (int i = 0; i < actividades.length; i++) {
@@ -131,16 +164,6 @@ public class ServicioPaquete {
     public int calcNvlAcom(PaqueteCultural x) {
         return x.NvlAcom();
     }
-
-    public void cambiarGuia(String n, String x) {
-        try {
-            PaqueteCultural pc = buscarPaqueteCultural(n);
-            pc.cambiar(0, x);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "No existe un paquete cultural con ese nombre");
-            
-        }
-    }
     
 
     public void cambiarElemento(String n, String x, int y) {
@@ -155,27 +178,6 @@ public class ServicioPaquete {
     // CRUD
     
 
-    public PaqueteCultural crearPC(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
-        try {
-            validarDatosPaquete(nombre, fechaInicio, fechaFin);
-            
-            PaqueteCultural PC = new PaqueteCultural(null, 0, nombre, 0.0, fechaInicio, fechaFin, actividades);
-            PC.setActividadesDelPaquete(actividades);
-            PC.setPrecio(PC.calcPrecio());
-            PC.setNombreGuia(seleGuia());
-            PC.setNvlAcomp(PC.NvlAcom());
-
-            actividades = new String[4];
-            
-            return PC;
-
-        } 
-        catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Falta llenar informacion");
-            throw new Exception("Falta llenar informacion" + e.getMessage(), e);
-           
-        }
-    }
 
     private void validarDatosPaquete(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
         if (nombre == null || nombre.isEmpty()) {
@@ -207,6 +209,7 @@ public class ServicioPaquete {
             PA.setPrecio(PA.calcPrecio());
             PA.setRestriccionEdad(PA.CalcRestEdad());
             actividades = new String[4];
+            
         if (PA == null) {
             JOptionPane.showMessageDialog(null, "El paquete no puede ser null.");
             throw new IllegalArgumentException("El paquete no puede ser null.");
@@ -225,8 +228,9 @@ public class ServicioPaquete {
             throw new IllegalArgumentException("Seleccione las 4 actividades");
             
         }
-            
+        
         paquetes.add(PA);
+        avisarPA();
     }
 
     public void añadirPaqueteCultural(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
@@ -260,6 +264,7 @@ public class ServicioPaquete {
         }
 
         paquetes.add(PC);
+        avisarPC();
     }
 
     public PaqueteAventurero buscarPaqueteAventurero(String nombre) throws Exception {
@@ -273,6 +278,7 @@ public class ServicioPaquete {
         for (PaqueteTuristico paquete : paquetes) {
             if (paquete instanceof PaqueteAventurero && paquete.getNombre().equals(nombre)) {
                 return (PaqueteAventurero) paquete;
+                
             }
         }
 
@@ -288,6 +294,7 @@ public class ServicioPaquete {
 
         for (PaqueteTuristico paquete : paquetes) {
             if (paquete instanceof PaqueteCultural && paquete.getNombre().equals(nombre)) {
+                avisarPC();
                 return (PaqueteCultural) paquete;
             }
         }
@@ -298,6 +305,7 @@ public class ServicioPaquete {
     public boolean eliminarPaqueteCultural(String nombre) {
     try {
         PaqueteCultural pc = buscarPaqueteCultural(nombre);
+        avisarPC();
         return paquetes.remove(pc);
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "No se pudo eliminar");
@@ -308,6 +316,7 @@ public class ServicioPaquete {
 public boolean eliminarPaqueteAventurero(String nombre) {
     try {
         PaqueteAventurero pa = buscarPaqueteAventurero(nombre);
+        avisarPA();
         return paquetes.remove(pa);
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "No se pudo eliminar");

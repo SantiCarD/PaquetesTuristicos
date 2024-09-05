@@ -16,7 +16,7 @@ import services.ServicioPaquete;
  *
  * @author Personal
  */
-public class GUIAgregarPC extends javax.swing.JFrame {
+public class GUIAgregarPC extends javax.swing.JFrame{
     private ServicioPaquete s;
     private PaqueteCultural pc;
     /**
@@ -452,4 +452,5 @@ public class GUIAgregarPC extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.PaqueteAventurero;
 import model.ReservaEquipamiento;
+import view.IInteresadaRE;
 
 /**
  *
@@ -16,16 +17,31 @@ import model.ReservaEquipamiento;
 public class ServicioEquipamiento {
     private ArrayList<ReservaEquipamiento> equipamientos;
     private ArrayList<String> elementos;
+    private ArrayList<IInteresadaRE> interesadasRE;
     
     public ServicioEquipamiento() {
         this.equipamientos = new ArrayList<ReservaEquipamiento>();
         this.elementos = new ArrayList();
+        interesadasRE = new ArrayList<>();
     }
     
     public void agregarElementos(String x)
     {
         elementos.add(x);
     }
+    
+    public void agregarInteresadaRE(IInteresadaRE ipa)
+    {
+        interesadasRE.add(ipa);
+    }
+    
+    public void avisarRE()
+    {
+        for (IInteresadaRE x : interesadasRE) {
+            x.actualizarRE();
+        }
+    }
+    
     
     public ReservaEquipamiento buscarReserva(String nombre) throws Exception {
         if (nombre == null || nombre.isEmpty()) {

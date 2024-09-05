@@ -5,6 +5,8 @@
 package view;
 
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.PaqueteAventurero;
 import services.ServicioPaquete;
@@ -13,7 +15,7 @@ import services.ServicioPaquete;
  *
  * @author Personal
  */
-public class GUIBuscarPA extends javax.swing.JFrame {
+public class GUIBuscarPA extends javax.swing.JFrame implements IInteresadaPA{
 
     /**
      * Creates new form GUIBuscarPA
@@ -23,6 +25,7 @@ public class GUIBuscarPA extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         this.s = s;
+        s.agregarInteresadaPA(this);
     }
 
     /**
@@ -410,4 +413,33 @@ public class GUIBuscarPA extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizarPA() {
+        try {
+            PaqueteAventurero a = s.buscarPaqueteAventurero(jTextField1.getText());  
+            if(a.getElementos().getTElementos() == null)
+        {
+           jTextField2.setText(a.getNombre());
+        jTextField4.setText(a.getPrecio().toString());
+        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
+        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
+        jTextField7.setText("No hay Elementos");
+        jTextField8.setText(a.toStringE());
+        }
+        else
+        {
+        jTextField2.setText(a.getNombre());
+        jTextField4.setText(a.getPrecio().toString());
+        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
+        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
+        jTextField7.setText(a.getElementos().toString());
+        jTextField8.setText(a.toStringE());
+        }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "No existe un paquete con el nombre: "+jTextField1.getText());
+        }
+    }
 }

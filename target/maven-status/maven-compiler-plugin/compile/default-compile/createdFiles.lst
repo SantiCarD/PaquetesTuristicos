@@ -26,6 +26,7 @@ view\GUIEliminarPA$3.class
 view\GUIAgregarPA.class
 view\GUIListarEquipamiento.class
 view\GUIAgregarPA$5.class
+view\IInteresadaPC.class
 view\GUIAgregarEquipamiento$1.class
 model\InfoEmpresa.class
 view\GUIBuscarPA$2.class
@@ -59,6 +60,7 @@ view\GUIEliminarPC$1.class
 view\GUIPrincipal$3.class
 view\GUIAgregarPC$11.class
 view\GUIPrincipal$13.class
+view\IInteresadaRE.class
 view\GUIAgregarPC$5.class
 view\GUIPrincipal$10.class
 view\GUIInfoEmpresa$1.class
@@ -96,6 +98,7 @@ view\GUIListarEquipamiento$1.class
 view\GUIAgregarEquipamiento$5.class
 view\GUIBuscarPC$1.class
 view\GUIAgregarPA$6.class
+view\IInteresadaPA.class
 view\GUIPrecioPA.class
 view\GUIEliminarPC.class
 view\GUIPrecioPC$4.class
