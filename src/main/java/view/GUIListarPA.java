@@ -45,7 +45,7 @@ public class GUIListarPA extends javax.swing.JFrame {
     for (PaqueteTuristico paquete : paquetes) {
          if (paquete instanceof PaqueteAventurero) {
         PaqueteAventurero paqueteAventurero = (PaqueteAventurero) paquete;
-        if(s.verificar(paqueteAventurero.getElementos().getElemento1()))
+        if(paqueteAventurero.getElementos().getTElementos() == null)
         {
             model.addRow(new Object[]{
             paqueteAventurero.getNombre(),
@@ -65,7 +65,7 @@ public class GUIListarPA extends javax.swing.JFrame {
             "$"+paqueteAventurero.getPrecio(),
             paqueteAventurero.getFechaInicio(),
             paqueteAventurero.getFechaFin(),
-            paqueteAventurero.getElementos().toStringE(),
+            paqueteAventurero.getElementos().toString(),
             paqueteAventurero.toStringE()
         });
         }

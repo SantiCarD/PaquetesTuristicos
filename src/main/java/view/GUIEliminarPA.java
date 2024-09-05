@@ -332,7 +332,7 @@ public class GUIEliminarPA extends javax.swing.JFrame {
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
           try {
             PaqueteAventurero a = s.buscarPaqueteAventurero(jTextField1.getText());  
-            if(s.verificar(a.getElementos().getElemento1()))
+            if(a.getElementos().getTElementos() == null)
         {
            jTextField2.setText(a.getNombre());
         jTextField4.setText(a.getPrecio().toString());
@@ -349,7 +349,7 @@ public class GUIEliminarPA extends javax.swing.JFrame {
         jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
         jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
-        jTextField7.setText(a.getElementos().toStringE());
+        jTextField7.setText(a.getElementos().toString());
         jTextField9.setText(a.toStringE());
         }
         } catch (Exception ex) {
@@ -363,7 +363,8 @@ public class GUIEliminarPA extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void BtnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscar2ActionPerformed
-    s.eliminarPaqueteAventurero(jTextField1.getText());            // TODO add your handling code here:
+    s.eliminarPaqueteAventurero(jTextField1.getText());   
+    JOptionPane.showMessageDialog(null, "Se elimino el paquete");// TODO add your handling code here:
     }//GEN-LAST:event_BtnBuscar2ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

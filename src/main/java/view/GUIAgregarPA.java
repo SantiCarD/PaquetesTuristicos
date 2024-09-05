@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 import model.PaqueteAventurero;
 import model.PaqueteTuristico;
 import model.ReservaEquipamiento;
+import services.ServicioEquipamiento;
 import services.ServicioPaquete;
 
 /**
@@ -20,25 +21,37 @@ import services.ServicioPaquete;
 public class GUIAgregarPA extends javax.swing.JFrame {
     
     private ServicioPaquete s;
+    private ServicioEquipamiento se;
     
-    public GUIAgregarPA(ServicioPaquete s) {
+    public GUIAgregarPA(ServicioPaquete s, ServicioEquipamiento se) {
         initComponents();
         setLocationRelativeTo(this);
         this.s = s;
+        this.se = se;
         inicializar();
         s.limpiarListas();
     }
 
     private void inicializar() {
-        
     for (String actividad : PaqueteAventurero.posiblesActividades()) { 
         jComboBox1.addItem(actividad);
         }
+    for (ReservaEquipamiento x : se.getEquipamientos())
+        jComboBox3.addItem(x.getNombre());
+    }
     
-    for (String elemento : ReservaEquipamiento.posiblesElementos()){
-        AgregarElemento.addItem(elemento);
-        }
-    
+    private void limpiar()
+    {
+        NombrePA.setText(null);
+        NombrePA1.setText(null);
+        jTextField3.setText(null);
+        jTextField4.setText(null);
+        jTextField5.setText(null);
+        jTextField6.setText(null);
+        jTextField7.setText(null);
+        jTextField8.setText(null);
+        s.limpiarListas();
+        
     }
     
 
@@ -79,16 +92,8 @@ public class GUIAgregarPA extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         BtnAgregar4 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jLabel30 = new javax.swing.JLabel();
-        AgregarElemento = new javax.swing.JComboBox<>();
-        Elementos = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        BtnAgregar3 = new javax.swing.JButton();
-        BtnAgregar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jComboBox3 = new javax.swing.JComboBox<>();
 
         jInternalFrame1.setVisible(true);
 
@@ -277,7 +282,6 @@ public class GUIAgregarPA extends javax.swing.JFrame {
 
         BtnAgregar4.setFont(new java.awt.Font("Segoe Print", 0, 10)); // NOI18N
         BtnAgregar4.setText("Agregar Paquete Aventurero");
-        BtnAgregar4.setEnabled(false);
         BtnAgregar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAgregar4ActionPerformed(evt);
@@ -291,107 +295,25 @@ public class GUIAgregarPA extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnAgregar4)
-                .addGap(100, 100, 100))
+                .addGap(113, 113, 113))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BtnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
+        jLabel9.setText("Seleccionar Reserva:");
 
-        jCheckBox6.setBackground(new java.awt.Color(204, 255, 255));
-        jCheckBox6.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
-        jCheckBox6.setText("Reservar Elementos");
-        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox3.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
+                jComboBox3ActionPerformed(evt);
             }
         });
-
-        jLabel30.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
-        jLabel30.setText("AgregarElemento:");
-
-        AgregarElemento.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
-        AgregarElemento.setEnabled(false);
-        AgregarElemento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgregarElementoActionPerformed(evt);
-            }
-        });
-
-        Elementos.setEditable(false);
-        Elementos.setBackground(new java.awt.Color(255, 255, 255));
-        Elementos.setFont(new java.awt.Font("Segoe UI", 2, 8)); // NOI18N
-        Elementos.setEnabled(false);
-        Elementos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ElementosActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Sitka Small", 1, 14)); // NOI18N
-        jLabel9.setText("Elementos:");
-
-        BtnAgregar3.setFont(new java.awt.Font("Segoe Print", 0, 8)); // NOI18N
-        BtnAgregar3.setText("Agregar");
-        BtnAgregar3.setEnabled(false);
-        BtnAgregar3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAgregar3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(AgregarElemento, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Elementos, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jCheckBox6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(jCheckBox6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AgregarElemento, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnAgregar3))
-                .addGap(18, 24, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(Elementos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-
-        BtnAgregar.setFont(new java.awt.Font("Segoe Print", 0, 10)); // NOI18N
-        BtnAgregar.setText("Crear Paquete");
-        BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAgregarActionPerformed(evt);
-            }
-        });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -402,46 +324,41 @@ public class GUIAgregarPA extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(72, 72, 72)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addGap(34, 34, 34)
-                                                .addComponent(jLabel7))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(12, 12, 12)
-                                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(35, 35, 35)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jLabel5)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addComponent(BtnAgregar)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jLabel8)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel7))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,23 +383,18 @@ public class GUIAgregarPA extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -500,46 +412,12 @@ public class GUIAgregarPA extends javax.swing.JFrame {
                      // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    
     private void BtnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar1ActionPerformed
         s.guardarActividad(jComboBox1.getSelectedItem().toString());  
         NombrePA1.setText(s.actividadesToString());
 // TODO add your handling code here:
     }//GEN-LAST:event_BtnAgregar1ActionPerformed
-
-    private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-
-        if(jCheckBox6.isSelected())
-        {
-            
-            try {
-            s.crearPAconElementos(NombrePA.getText()
-                    ,s.crearFecha(jTextField5.getText(),jTextField4.getText(),jTextField3.getText())
-                    ,s.crearFecha(jTextField8.getText(),jTextField6.getText(),jTextField7.getText()));
-            jTextArea1.setText(s.getpaqAventurero().toStringcon());
-            BtnAgregar.setEnabled(false);
-            BtnAgregar4.setEnabled(true);
-        } catch (Exception ex) {
-            Logger.getLogger(GUIAgregarPA.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-        
-        else
-        {
-            try {
-            s.crearPAsinElementos(NombrePA.getText()
-                    ,s.crearFecha(jTextField5.getText(),jTextField4.getText(),jTextField3.getText())
-                    ,s.crearFecha(jTextField8.getText(),jTextField6.getText(),jTextField7.getText()));
-            jTextArea1.setText(s.getpaqAventurero().toStringsin());
-            BtnAgregar.setEnabled(false);
-            BtnAgregar4.setEnabled(true);
-        } catch (Exception ex) {
-            Logger.getLogger(GUIAgregarPA.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-        
-        
-    
-    }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void NombrePA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombrePA1ActionPerformed
            // TODO add your handling code here:
@@ -554,47 +432,26 @@ public class GUIAgregarPA extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void ElementosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ElementosActionPerformed
-    // TODO add your handling code here:
-    }//GEN-LAST:event_ElementosActionPerformed
-
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
-        
-        if(jCheckBox6.isSelected())
-        {
-            Elementos.setEnabled(true);
-            AgregarElemento.setEnabled(true);
-            BtnAgregar3.setEnabled(true);
-            BtnAgregar.setEnabled(true);
-            
-        }
-        else
-        {
-            Elementos.setEnabled(false);
-            AgregarElemento.setEnabled(false);
-            BtnAgregar3.setEnabled(false);
-        }
-// TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
-
-    private void AgregarElementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarElementoActionPerformed
-
-    }//GEN-LAST:event_AgregarElementoActionPerformed
-
     private void BtnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnAgregar2ActionPerformed
 
-    private void BtnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar3ActionPerformed
-        s.guardarElemento(AgregarElemento.getSelectedItem().toString());
-        Elementos.setText(s.elementosToString());     
-    }//GEN-LAST:event_BtnAgregar3ActionPerformed
-
     private void BtnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar4ActionPerformed
- 
-            s.añadirPaqueteAventurero(s.getpaqAventurero());
+        
+        try {
+            System.out.println(se.getEquipamientos());
+            System.out.println("xddd");
+            s.añadirPaqueteAventurero(NombrePA.getText()
+                ,s.crearFecha(jTextField5.getText(),jTextField4.getText(),jTextField3.getText())
+                ,s.crearFecha(jTextField8.getText(),jTextField6.getText(),jTextField7.getText())
+                ,se.buscarReserva(jComboBox3.getSelectedItem().toString()));
             JOptionPane.showMessageDialog(null, "Se agrego el paquete");
-            dispose();
+            limpiar();
+            
+        } catch (Exception ex) {
+            Logger.getLogger(GUIAgregarPA.class.getName()).log(Level.SEVERE, null, ex);
+            limpiar();
+        }
 
     System.out.println("Paquetes en la lista después de agregar:");
     for (PaqueteTuristico paquete : s.getPaquetes()) {
@@ -603,28 +460,27 @@ public class GUIAgregarPA extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_BtnAgregar4ActionPerformed
 
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
  
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> AgregarElemento;
-    private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnAgregar1;
     private javax.swing.JButton BtnAgregar2;
-    private javax.swing.JButton BtnAgregar3;
     private javax.swing.JButton BtnAgregar4;
-    private javax.swing.JTextField Elementos;
     private javax.swing.JTextField NombrePA;
     private javax.swing.JTextField NombrePA1;
-    private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox24;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -632,12 +488,9 @@ public class GUIAgregarPA extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

@@ -348,7 +348,9 @@ public class GUIEliminarPC extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void BtnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscar2ActionPerformed
-    s.eliminarPaqueteCultural(jTextField1.getText());        // TODO add your handling code here:
+    s.eliminarPaqueteCultural(jTextField1.getText());      
+    JOptionPane.showMessageDialog(null, "Se elimino el paquete");// 
+// TODO add your handling code here:
     }//GEN-LAST:event_BtnBuscar2ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed

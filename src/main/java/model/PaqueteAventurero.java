@@ -33,15 +33,11 @@ public class PaqueteAventurero extends PaqueteTuristico{
     private ReservaEquipamiento Elementos;
     private static String[] actividades;
 
-    public PaqueteAventurero(int RestriccionEdad, ReservaEquipamiento Elementos, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
-        super(Nombre, Precio, FechaInicio, FechaFin, ActividadesDelPaquete);
-        this.RestriccionEdad = RestriccionEdad;
-        this.Elementos = Elementos;
-    }
     
-    public PaqueteAventurero(int RestriccionEdad, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
+    public PaqueteAventurero(int RestriccionEdad,ReservaEquipamiento e, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
         super(Nombre, Precio, FechaInicio, FechaFin, ActividadesDelPaquete);
         this.RestriccionEdad = RestriccionEdad;
+        this.Elementos = e;
     }
      
      static {
@@ -86,17 +82,12 @@ public class PaqueteAventurero extends PaqueteTuristico{
     
     public String toStringEs(ReservaEquipamiento e) {
         
-        return (e.getElemento1()+ ", " + e.getElemento2()+ ", " + e.getElemento3()+ ", " + e.getElemento4());
-    }
-    
-    
+        return e.toString();
+    }    
 
-    public String toStringcon() {
-        return "PaqueteAventurero: " +"Nombre= "+ getNombre()+ ", Precio= "+ getPrecio()+ ", Fecha de Inicio=" + getFechaInicio()+", Fecha de Fin=" + getFechaFin() +", Actividades=" + toStringE()+", RestriccionEdad= " + RestriccionEdad + ", Elementos=" + getElementos().toStringE() + '}';
-    }
     
     public String toStringsin() {
-        return "PaqueteAventurero: " +"Nombre= "+ getNombre()+ ", Precio= "+ getPrecio()+ ", Fecha de Inicio=" + getFechaInicio()+", Fecha de Fin=" + getFechaFin() +", Actividades=" + toStringE()+", RestriccionEdad= " + RestriccionEdad;
+        return "PaqueteAventurero: " +"Nombre= "+ getNombre()+ ", Fecha de Inicio=" + getFechaInicio()+", Fecha de Fin=" + getFechaFin() +", Actividades=" + toStringE()+", RestriccionEdad= " + RestriccionEdad;
     }
     
     
@@ -121,7 +112,9 @@ public class PaqueteAventurero extends PaqueteTuristico{
             }
         }
         
-        for (String a : Elementos.getElementoss())
+        if(Elementos.getTElementos() !=null)
+        {
+            for (String a : Elementos.getTElementos())
         {
             switch (a) {
                 case "Equipo de Escalada" -> precio += PRECIO_EQUIPO_ESCALADA;
@@ -134,6 +127,13 @@ public class PaqueteAventurero extends PaqueteTuristico{
                 default -> {}
             }
         }
+}
+            else
+            {
+                    System.out.println("No hay elementos");
+                    }
+        
+        
         
         this.precio=precio;
         return precio;
@@ -169,25 +169,7 @@ public class PaqueteAventurero extends PaqueteTuristico{
     @Override
     public void cambiar(int x,String y) { 
         
-        
-            if(x==1)
-            {
-                Elementos.setElemento1(y);
-            }
-            else if(x==2)
-            {
-            Elementos.setElemento2(y);
-            }
-            else if(x==3)
-            Elementos.setElemento3(y);
-            else if(x==4)
-            {
-            Elementos.setElemento4(y); 
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "No existe un 5 elemento");
-            }
+        Elementos.getTElementos().set(x, y);
     }
 
 }

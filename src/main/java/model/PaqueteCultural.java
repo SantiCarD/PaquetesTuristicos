@@ -98,7 +98,7 @@ public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
     }
     
     public String toString() {
-        return "PaqueteCultural: " +"Nombre= "+ getNombre()+ " Precio= "+ getPrecio()+ " Fecha de Inicio=" + getFechaInicio()+" Fecha de Fin=" + getFechaFin() +" Actividades=" + toStringE()+" Nombre del Guia= " + nombreGuia +" Nivel de acompañamiento= " + nvlAcomp +'}';
+        return "PaqueteCultural: " +"Nombre= "+ getNombre()+ " Fecha de Inicio=" + getFechaInicio()+" Fecha de Fin=" + getFechaFin() +" Actividades=" + toStringE()+" Nombre del Guia= " + nombreGuia +" Nivel de acompañamiento= " + nvlAcomp +'}';
     }
     
     public static String[] posiblesActividades()
@@ -116,22 +116,25 @@ public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
         return (posiblesGuias()[0]+", "+ posiblesGuias()[1]+", "+ posiblesGuias()[2]);
     }
     
-    public int NvlAcom()
-    {
-        int x = 0;
-        for(String a : actividadesDelPaquete)
-        {
-            switch (a) {
-                case "Bus" -> x =3;
-                case "Plaza" -> x=5;
-                case "Galeria" -> x=6;
-                case "Museo" -> x=8;
-                case "Exploración de Ciudad" -> x=9;
-                default -> {}
-            }
+    public int NvlAcom() {
+    int x = 0; 
+    for (String a : actividadesDelPaquete) {
+        int nivel = 0; 
+        switch (a) {
+            case "Bus" -> nivel = 3;
+            case "Plaza" -> nivel = 5;
+            case "Galeria" -> nivel = 6;
+            case "Museo" -> nivel = 8;
+            case "Exploración de Ciudad" -> nivel = 9;
+            default -> {} 
         }
-        return x;
+        if (nivel > x) {
+            x = nivel; 
+        }
     }
+    return x;
+}
+
     @Override
     public Boolean condonar(boolean x) {
         if(x==true)

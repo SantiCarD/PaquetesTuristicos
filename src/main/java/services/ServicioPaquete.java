@@ -15,16 +15,10 @@ import model.ReservaEquipamiento;
 public class ServicioPaquete {
     private ArrayList<PaqueteTuristico> paquetes;
     private String[] actividades;
-    private String[] elementos;
-    private ServicioEquipamiento se;
-    private PaqueteAventurero PA;
-    private PaqueteCultural PC;
 
     public ServicioPaquete() {
         paquetes = new ArrayList<PaqueteTuristico>();
-        elementos = new String[4];
-        actividades = new String[4];
-        se = new ServicioEquipamiento(elementos);   
+        actividades = new String[4];  
     }
 
     public ArrayList<PaqueteTuristico> getPaquetes() {
@@ -34,10 +28,6 @@ public class ServicioPaquete {
     public void limpiarListas() {
         for (int i = 0; i < actividades.length; i++) {
             actividades[i] = null;
-        }
-
-        for (int i = 0; i < elementos.length; i++) {
-            elementos[i] = null;
         }
     }
 
@@ -132,20 +122,6 @@ public class ServicioPaquete {
         return sb.toString();
     }
 
-    public void guardarElemento(String actividad) {
-        se.guardarElemento(actividad);
-    }
-
-    public ReservaEquipamiento getElementos() {
-        ReservaEquipamiento x = new ReservaEquipamiento(
-            elementos[0], elementos[1], elementos[2], elementos[3]
-        );
-        return x;
-    }
-
-    public String elementosToString() {
-        return se.elementosToString();
-    }
 
     public String seleGuia() {
         String[] x = PaqueteCultural.posiblesGuias();
@@ -166,19 +142,6 @@ public class ServicioPaquete {
         }
     }
     
-    public boolean verificar(String x)
-    {
-        boolean y=false;
-        if(x==null)
-        {
-            y=true;
-        }
-        else if(x=="")
-        {
-            y=true;
-        }
-        return y;
-    }
 
     public void cambiarElemento(String n, String x, int y) {
         try {
@@ -189,69 +152,14 @@ public class ServicioPaquete {
         }
     }
 
-    public PaqueteAventurero getpaqAventurero() {
-        return PA;
-    }
-
-    public PaqueteCultural getpaqCultural() {
-        return PC;
-    }
-
     // CRUD
-
-    public PaqueteAventurero crearPAconElementos(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
-        try {
-            validarDatosPaquete(nombre, fechaInicio, fechaFin);
-            
-
-            PA = new PaqueteAventurero(0, getElementos(), nombre, 0.0, fechaInicio, fechaFin, actividades);
-            PA.setActividadesDelPaquete(actividades);
-            PA.setElementos(getElementos());
-            PA.setPrecio(PA.calcPrecio());
-            PA.setRestriccionEdad(PA.CalcRestEdad());
-            
-
-            actividades = new String[4];
-            
-            return PA;
-
-        } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Falta llenar informacion");
-            throw new Exception("Falta llenar informacion" + e.getMessage(), e);
-           
-        }
-    }
-    
-    public PaqueteAventurero crearPAsinElementos(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
-        try {
-            validarDatosPaquete(nombre, fechaInicio, fechaFin);
-            
-
-            PA = new PaqueteAventurero(0, getElementos(), nombre, 0.0, fechaInicio, fechaFin, actividades);
-            PA.setActividadesDelPaquete(actividades);
-            ReservaEquipamiento x= new ReservaEquipamiento("", "","", "");
-            PA.setElementos(x);
-            PA.setPrecio(PA.calcPrecio());
-            PA.setRestriccionEdad(PA.CalcRestEdad());
-            
-
-            actividades = new String[4];
-            
-            return PA;
-
-        } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Falta llenar informacion");
-            throw new Exception("Falta llenar informacion" + e.getMessage(), e);
-           
-        }
-    }
     
 
     public PaqueteCultural crearPC(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
         try {
             validarDatosPaquete(nombre, fechaInicio, fechaFin);
             
-            PC = new PaqueteCultural(null, 0, nombre, 0.0, fechaInicio, fechaFin, actividades);
+            PaqueteCultural PC = new PaqueteCultural(null, 0, nombre, 0.0, fechaInicio, fechaFin, actividades);
             PC.setActividadesDelPaquete(actividades);
             PC.setPrecio(PC.calcPrecio());
             PC.setNombreGuia(seleGuia());
@@ -292,50 +200,66 @@ public class ServicioPaquete {
         }
     }
 
-    public void añadirPaqueteAventurero(PaqueteAventurero pa) {
-        if (pa == null) {
+    public void añadirPaqueteAventurero(String nombre, LocalDate fechaInicio, LocalDate fechaFin, ReservaEquipamiento res) throws Exception {
+            validarDatosPaquete(nombre, fechaInicio, fechaFin);
+            PaqueteAventurero PA = new PaqueteAventurero(0,res, nombre, 0.0, fechaInicio, fechaFin, actividades);
+            PA.setActividadesDelPaquete(actividades);
+            PA.setPrecio(PA.calcPrecio());
+            PA.setRestriccionEdad(PA.CalcRestEdad());
+            actividades = new String[4];
+        if (PA == null) {
             JOptionPane.showMessageDialog(null, "El paquete no puede ser null.");
             throw new IllegalArgumentException("El paquete no puede ser null.");
             
         }
 
         for (PaqueteTuristico e : paquetes) {
-            if (e instanceof PaqueteAventurero && e.getNombre().equalsIgnoreCase(pa.getNombre())) {
+            if (e instanceof PaqueteAventurero && e.getNombre().equalsIgnoreCase(PA.getNombre())) {
                 JOptionPane.showMessageDialog(null, "Ya existe un paquete aventurero con el mismo nombre.");
                 throw new IllegalArgumentException("Ya existe un paquete aventurero con el mismo nombre.");
                 
             }
         }
-        if (pa.getActividadesDelPaquete()[0]== null || pa.getActividadesDelPaquete()[1]== null || pa.getActividadesDelPaquete()[2]== null || pa.getActividadesDelPaquete()[3]== null) {
+        if (PA.getActividadesDelPaquete()[0]== null || PA.getActividadesDelPaquete()[1]== null || PA.getActividadesDelPaquete()[2]== null || PA.getActividadesDelPaquete()[3]== null) {
             JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
             throw new IllegalArgumentException("Seleccione las 4 actividades");
             
         }
-
-        paquetes.add(pa);
+            
+        paquetes.add(PA);
     }
 
-    public void añadirPaqueteCultural(PaqueteCultural pa) {
-        if (pa == null) {
+    public void añadirPaqueteCultural(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
+            validarDatosPaquete(nombre, fechaInicio, fechaFin);
+            
+            PaqueteCultural PC = new PaqueteCultural(null, 0, nombre, 0.0, fechaInicio, fechaFin, actividades);
+            PC.setActividadesDelPaquete(actividades);
+            PC.setPrecio(PC.calcPrecio());
+            PC.setNombreGuia(seleGuia());
+            PC.setNvlAcomp(PC.NvlAcom());
+
+            actividades = new String[4];
+        
+        if (PC == null) {
             JOptionPane.showMessageDialog(null, "El paquete no puede ser null.");
             throw new IllegalArgumentException("El paquete no puede ser null.");
             
         }
 
         for (PaqueteTuristico e : paquetes) {
-            if (e instanceof PaqueteCultural && e.getNombre().equalsIgnoreCase(pa.getNombre())) {
+            if (e instanceof PaqueteCultural && e.getNombre().equalsIgnoreCase(PC.getNombre())) {
                 JOptionPane.showMessageDialog(null, "Ya existe un paquete cultural con el mismo nombre.");
                 throw new IllegalArgumentException("Ya existe un paquete cultural con el mismo nombre.");
                 
             }
         }
-        if (pa.getActividadesDelPaquete()[0]== null || pa.getActividadesDelPaquete()[1]== null || pa.getActividadesDelPaquete()[2]== null || pa.getActividadesDelPaquete()[3]== null) {
+        if (PC.getActividadesDelPaquete()[0]== null || PC.getActividadesDelPaquete()[1]== null || PC.getActividadesDelPaquete()[2]== null || PC.getActividadesDelPaquete()[3]== null) {
             JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
             throw new IllegalArgumentException("Seleccione las 4 actividades");
             
         }
 
-        paquetes.add(pa);
+        paquetes.add(PC);
     }
 
     public PaqueteAventurero buscarPaqueteAventurero(String nombre) throws Exception {

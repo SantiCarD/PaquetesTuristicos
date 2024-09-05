@@ -324,7 +324,7 @@ public class GUIBuscarPA extends javax.swing.JFrame {
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
         try {
             PaqueteAventurero a = s.buscarPaqueteAventurero(jTextField1.getText());  
-            if(s.verificar(a.getElementos().getElemento1()))
+            if(a.getElementos().getTElementos() == null)
         {
            jTextField2.setText(a.getNombre());
         jTextField4.setText(a.getPrecio().toString());
@@ -341,7 +341,7 @@ public class GUIBuscarPA extends javax.swing.JFrame {
         jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
         jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
-        jTextField7.setText(a.getElementos().toStringE());
+        jTextField7.setText(a.getElementos().toString());
         jTextField8.setText(a.toStringE());
         }
         } catch (Exception ex) {

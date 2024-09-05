@@ -7,7 +7,10 @@ package view;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import model.InfoEmpresa;
+import services.ServicioEquipamiento;
 import services.ServicioPaquete;
+import services.ServicioSingleton;
 
 /**
  *
@@ -15,6 +18,8 @@ import services.ServicioPaquete;
  */
 public class GUIPrincipal extends javax.swing.JFrame {
     private ServicioPaquete s;
+    private ServicioEquipamiento se;
+    private ServicioSingleton si;
     
  
     /**
@@ -24,6 +29,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         s = new ServicioPaquete();
+        se = new ServicioEquipamiento();
+        si = new ServicioSingleton();
     }
 
     public ServicioPaquete getServicioP()
@@ -64,10 +71,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
         ListarPaqueteCultural = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         CalcularPrecioPC = new javax.swing.JMenuItem();
-        a = new javax.swing.JMenu();
-        Ayuda = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         ad = new javax.swing.JMenu();
         AcercaDe = new javax.swing.JMenuItem();
+        Ayuda = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
@@ -110,9 +119,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         MenuPaqueteAventurero.setText("PaqueteAventurero");
         MenuPaqueteAventurero.setToolTipText("");
         MenuPaqueteAventurero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuPaqueteAventurero.setMargin(new java.awt.Insets(3, 4, 3, 4));
         MenuPaqueteAventurero.setMaximumSize(new java.awt.Dimension(121, 32767));
-        MenuPaqueteAventurero.setMinimumSize(new java.awt.Dimension(121, 22));
-        MenuPaqueteAventurero.setPreferredSize(new java.awt.Dimension(121, 22));
+        MenuPaqueteAventurero.setMinimumSize(new java.awt.Dimension(105, 22));
+        MenuPaqueteAventurero.setPreferredSize(new java.awt.Dimension(115, 22));
 
         AgregarPaqueteAventurero.setText("Adicionar Paquete Aventurero");
         AgregarPaqueteAventurero.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +161,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         MenuPaqueteAventurero.add(ListarPaqueteAventurero);
         MenuPaqueteAventurero.add(jSeparator8);
 
-        CalcularPrecioPA.setText("Cambiar Elemento");
+        CalcularPrecioPA.setText("Calcular Precio ");
         CalcularPrecioPA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CalcularNvlDifActionPerformed(evt);
@@ -163,6 +173,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         PaqueteCultural.setText("PaqueteCultural");
         PaqueteCultural.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PaqueteCultural.setMinimumSize(new java.awt.Dimension(99, 22));
 
         AgregarPaqueteCultural.setText("Agregar Paquete Cultural");
         AgregarPaqueteCultural.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +211,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         PaqueteCultural.add(ListarPaqueteCultural);
         PaqueteCultural.add(jSeparator4);
 
-        CalcularPrecioPC.setText("Calcular Guia");
+        CalcularPrecioPC.setText("Calcular Precio");
         CalcularPrecioPC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CalcularNvlAcomActionPerformed(evt);
@@ -210,23 +221,19 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(PaqueteCultural);
 
-        a.setText("Ayuda");
-        a.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        a.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setText("ReservaEquipamiento");
+        jMenu1.setMaximumSize(new java.awt.Dimension(120, 32767));
+        jMenu1.setMinimumSize(new java.awt.Dimension(120, 22));
+
+        jMenuItem2.setText("Agregar Reserva");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem2);
 
-        Ayuda.setText("Contacto");
-        Ayuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AyudaActionPerformed(evt);
-            }
-        });
-        a.add(Ayuda);
-
-        jMenuBar1.add(a);
+        jMenuBar1.add(jMenu1);
 
         ad.setText("Acerca de");
         ad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -243,6 +250,22 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         });
         ad.add(AcercaDe);
+
+        Ayuda.setText("Contacto");
+        Ayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AyudaActionPerformed(evt);
+            }
+        });
+        ad.add(Ayuda);
+
+        jMenuItem3.setText("Info Empresa");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        ad.add(jMenuItem3);
 
         jMenuBar1.add(ad);
 
@@ -264,7 +287,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     
     private void AgregarPaqueteAventureroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarPaqueteAventureroActionPerformed
-                GUIAgregarPA agregarPA = new GUIAgregarPA(s);
+                GUIAgregarPA agregarPA = new GUIAgregarPA(s,se);
                 agregarPA.setVisible(true);
 
     }//GEN-LAST:event_AgregarPaqueteAventureroActionPerformed
@@ -309,18 +332,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_adActionPerformed
 
     private void CalcularNvlAcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularNvlAcomActionPerformed
-        GUICambiarGuia cambiar = new GUICambiarGuia(s);
-                cambiar.setVisible(true);
+        GUIPrecioPC ayuda = new GUIPrecioPC(s);
+        ayuda.setVisible(true);
     }//GEN-LAST:event_CalcularNvlAcomActionPerformed
 
     private void CalcularNvlDifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularNvlDifActionPerformed
-        GUICambiarElemento cambiar = new GUICambiarElemento(s);
-                cambiar.setVisible(true);
+        GUIPrecioPA ayuda = new GUIPrecioPA(s);
+        ayuda.setVisible(true);
     }//GEN-LAST:event_CalcularNvlDifActionPerformed
-
-    private void aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aActionPerformed
-
-    }//GEN-LAST:event_aActionPerformed
 
     private void AyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AyudaActionPerformed
         GUIAyuda ayuda = new GUIAyuda();
@@ -329,12 +348,22 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void AcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcercaDeActionPerformed
         GUIDesarrolladores cambiar = new GUIDesarrolladores();
-                cambiar.setVisible(true);
+        cambiar.setVisible(true);
     }//GEN-LAST:event_AcercaDeActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    System.exit(0);        // TODO add your handling code here:
+    System.exit(0);    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        GUIAgregarEquipamiento eq = new GUIAgregarEquipamiento(se);
+        eq.setVisible(true);       // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        GUIInfoEmpresa ie = new GUIInfoEmpresa(si);
+        ie.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
      
     /**
      * @param args the command line arguments
@@ -388,11 +417,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem ListarPaqueteCultural;
     private javax.swing.JMenu MenuPaqueteAventurero;
     private javax.swing.JMenu PaqueteCultural;
-    private javax.swing.JMenu a;
     private javax.swing.JMenu ad;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;

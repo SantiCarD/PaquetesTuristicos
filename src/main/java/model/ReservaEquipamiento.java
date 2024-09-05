@@ -4,79 +4,52 @@
  */
 package model;
 
-import java.util.Iterator;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 /**
  *
  * @author Personal
  */
 public class ReservaEquipamiento {
-
-    private String elemento1;
-    private String elemento2;
-    private String elemento3;
-    private String elemento4;
+    private String nombre;
+    private ArrayList<String> TElementos;
     private static String[] elementos;
  
 
-    public ReservaEquipamiento(String elemento1, String elemento2, String elemento3, String elemento4) {
-        this.elemento1 = elemento1;
-        this.elemento2 = elemento2;
-        this.elemento3 = elemento3;
-        this.elemento4 = elemento4;
+    public ReservaEquipamiento(ArrayList<String> elementox, String nombre) {
+        this.nombre = nombre;
+        this.TElementos = elementox;
     }
 
-    public String getElemento1() {
-        return elemento1;
+    public ArrayList<String> getTElementos() {
+        return TElementos;
     }
 
-    public void setElemento1(String elemento1) {
-        this.elemento1 = elemento1;
+    public void setTElementos(ArrayList<String> TElementos) {
+        this.TElementos = TElementos;
     }
 
-    public String getElemento2() {
-        return elemento2;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setElemento2(String elemento2) {
-        this.elemento2 = elemento2;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+    
+    
 
-    public String getElemento3() {
-        return elemento3;
-    }
-
-    public void setElemento3(String elemento3) {
-        this.elemento3 = elemento3;
-    }
-
-    public String getElemento4() {
-        return elemento4;
-    }
-
-    public void setElemento4(String elemento4) {
-        this.elemento4 = elemento4;
-    }
+    
 
     @Override
     public String toString() {
-        return "Equipamiento" + "elemento1=" + elemento1 + ", elemento2=" + elemento2 + ", elemento3=" + elemento3 + ", elemento4=" + elemento4;
-    }
-    
-     public String toStringE() {
-        return elemento1+", " + elemento2 + ", " + elemento3 + ", " + elemento4;
-    }
-     
-    public String[] getElementoss()
-    {
-        String[] x = new String[4];
-        x[0]=getElemento1();
-        x[1]=getElemento2();
-        x[2]=getElemento3();
-        x[3]=getElemento4();
+        String x = "";
+        for (int i = 0; i < TElementos.size(); i++) {
+            x= x+TElementos.get(i)+", ";
+        }
         return x;
     }
+    
     
      
      static {
