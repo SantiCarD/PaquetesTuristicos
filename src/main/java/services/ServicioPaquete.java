@@ -17,15 +17,15 @@ import view.IInteresadaPC;
 import view.IInteresadaRE;
 
 public class ServicioPaquete {
-    private ArrayList<IInteresadaPA> interesadasPA;
-    private ArrayList<IInteresadaPC> interesadasPC;
+    private ServicioGUIInteresadasPA interesadasPA;
+    private ServicioGUIInteresadasPC interesadasPC;
     private ArrayList<PaqueteTuristico> paquetes;
     private String[] actividades;
 
     public ServicioPaquete() {
         paquetes = new ArrayList<PaqueteTuristico>();
-        interesadasPA = new ArrayList<>();
-        interesadasPC = new ArrayList<>();
+        interesadasPA = new ServicioGUIInteresadasPA();
+        interesadasPC = new ServicioGUIInteresadasPC();
         actividades = new String[4];  
     }
 
@@ -33,27 +33,25 @@ public class ServicioPaquete {
         return paquetes;
     }
     
-    public void agregarInteresadaPA(IInteresadaPA ipa)
+    
+    public void agregarInteresadaPA(IInteresadaPA interesada)
     {
-        interesadasPA.add(ipa);
+        interesadasPA.agregarInteresadaPA(interesada);
     }
     
-    public void agregarInteresadaPC(IInteresadaPC ipa)
+    public void agregarInteresadaPC(IInteresadaPC interesada)
     {
-        interesadasPC.add(ipa);
+        interesadasPC.agregarInteresadaPC(interesada);
     }
     
-    public void avisarPA()
+    public void eliminarInteresadaPA(IInteresadaPA interesada)
     {
-        for (IInteresadaPA x : interesadasPA) {
-            x.actualizarPA();
-        }
+        interesadasPA.eliminarInteresadaPA(interesada);
     }
-    public void avisarPC()
+    
+    public void deleteInteresadaC(IInteresadaPC interesada)
     {
-        for (IInteresadaPC x : interesadasPC) {
-            x.actualizarPC();
-        }
+        interesadasPC.eliminarInteresadaPC(interesada);
     }
     
     
@@ -230,7 +228,7 @@ public class ServicioPaquete {
         }
         
         paquetes.add(PA);
-        avisarPA();
+        interesadasPA.avisarPA();
     }
 
     public void añadirPaqueteCultural(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
@@ -264,7 +262,7 @@ public class ServicioPaquete {
         }
 
         paquetes.add(PC);
-        avisarPC();
+        interesadasPC.avisarPC();
     }
 
     public PaqueteAventurero buscarPaqueteAventurero(String nombre) throws Exception {
@@ -294,7 +292,6 @@ public class ServicioPaquete {
 
         for (PaqueteTuristico paquete : paquetes) {
             if (paquete instanceof PaqueteCultural && paquete.getNombre().equals(nombre)) {
-                avisarPC();
                 return (PaqueteCultural) paquete;
             }
         }
@@ -305,7 +302,7 @@ public class ServicioPaquete {
     public boolean eliminarPaqueteCultural(String nombre) {
     try {
         PaqueteCultural pc = buscarPaqueteCultural(nombre);
-        avisarPC();
+        interesadasPC.avisarPC();
         return paquetes.remove(pc);
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "No se pudo eliminar");
@@ -316,7 +313,7 @@ public class ServicioPaquete {
 public boolean eliminarPaqueteAventurero(String nombre) {
     try {
         PaqueteAventurero pa = buscarPaqueteAventurero(nombre);
-        avisarPA();
+        interesadasPA.avisarPA();
         return paquetes.remove(pa);
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "No se pudo eliminar");
@@ -324,4 +321,13 @@ public boolean eliminarPaqueteAventurero(String nombre) {
     }
 }
 
+public void actualizarPaqueteAventurero(PaqueteAventurero pa, int RestriccionEdad,ReservaEquipamiento e, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete)
+{
+        pa.setNombre(Nombre);
+        pa.setRestriccionEdad(RestriccionEdad);
+        pa.setPrecio(Precio);
+        pa.setFechaInicio(FechaInicio);
+        pa.setFechaFin(FechaFin);
+        pa.setActividadesDelPaquete(ActividadesDelPaquete); 
+}
 }

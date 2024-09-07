@@ -19,7 +19,7 @@ import services.ServicioPaquete;
  *
  * @author Personal
  */
-public class GUIListarPA extends javax.swing.JFrame {
+public class GUIListarPA extends javax.swing.JFrame implements IInteresadaPA{
     
     private ServicioPaquete s;
     /**
@@ -29,6 +29,7 @@ public class GUIListarPA extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         this.s = s;
+        s.agregarInteresadaPA(this);
     }
 
 
@@ -250,4 +251,48 @@ public class GUIListarPA extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizarPA() {
+        DefaultTableModel model = (DefaultTableModel) TablaPA.getModel();
+    model.setRowCount(0); 
+    
+    ArrayList<PaqueteTuristico> paquetes = s.getPaquetes();
+    
+    for (PaqueteTuristico paquete : paquetes) {
+         if (paquete instanceof PaqueteAventurero) {
+        PaqueteAventurero paqueteAventurero = (PaqueteAventurero) paquete;
+        if(paqueteAventurero.getElementos().getTElementos() == null)
+        {
+            model.addRow(new Object[]{
+            paqueteAventurero.getNombre(),
+            paqueteAventurero.getRestriccionEdad()+" Años",
+            "$"+paqueteAventurero.getPrecio(),
+            paqueteAventurero.getFechaInicio(),
+            paqueteAventurero.getFechaFin(),
+            "No Hay Elementos",
+            paqueteAventurero.toStringE()
+        });
+        }
+        else
+        {
+            model.addRow(new Object[]{
+            paqueteAventurero.getNombre(),
+            paqueteAventurero.getRestriccionEdad()+" Años",
+            "$"+paqueteAventurero.getPrecio(),
+            paqueteAventurero.getFechaInicio(),
+            paqueteAventurero.getFechaFin(),
+            paqueteAventurero.getElementos().toString(),
+            paqueteAventurero.toStringE()
+        });
+        }
+            
+                ;
+    } 
+         else {
+             
+             System.out.println("El paquete "+paquete+" no es del tipo buscado");;
+         }
+    }
+    }
 }

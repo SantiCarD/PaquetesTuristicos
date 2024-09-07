@@ -63,14 +63,14 @@ public class GUIDesarrolladores extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Personal\\Desktop\\Universidad\\Git\\ProyectoEmpresariales_V1\\src\\main\\java\\data\\SantiagoFoto.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/SantiagoFoto.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         jLabel3.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Santiago Cardenas");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Personal\\Desktop\\Universidad\\Git\\ProyectoEmpresariales_V1\\src\\main\\java\\data\\CamiloFoto.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Personal\\Desktop\\Universidad\\Git\\ProyectoEmpresariales_V1\\src\\main\\resources\\data\\CamiloFoto.png")); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));

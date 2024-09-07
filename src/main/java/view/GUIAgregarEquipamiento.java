@@ -66,6 +66,7 @@ public class GUIAgregarEquipamiento extends javax.swing.JFrame {
         BtnAgregar4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Agregar Reserva Equipamiento");
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -221,9 +222,8 @@ public class GUIAgregarEquipamiento extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,10 +271,6 @@ public class GUIAgregarEquipamiento extends javax.swing.JFrame {
     private void BtnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar4ActionPerformed
 
         try {
-            System.out.println(s.getReserva(NombrePA.getText()).toString());
-            System.out.println("xddd");
-            System.out.println(s.elementossToString(s.getReserva(NombrePA.getText())));
-            System.out.println("xddd");
             s.agregarReserva(s.getReserva(NombrePA.getText()));
             JOptionPane.showMessageDialog(null, "Se agrego la Reserva");
             limpiar();

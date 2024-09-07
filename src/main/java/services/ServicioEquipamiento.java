@@ -17,12 +17,12 @@ import view.IInteresadaRE;
 public class ServicioEquipamiento {
     private ArrayList<ReservaEquipamiento> equipamientos;
     private ArrayList<String> elementos;
-    private ArrayList<IInteresadaRE> interesadasRE;
+    private ServicioGUIInteresadasRE interesadasRE;
     
     public ServicioEquipamiento() {
         this.equipamientos = new ArrayList<ReservaEquipamiento>();
         this.elementos = new ArrayList();
-        interesadasRE = new ArrayList<>();
+        interesadasRE = new ServicioGUIInteresadasRE();
     }
     
     public void agregarElementos(String x)
@@ -30,17 +30,17 @@ public class ServicioEquipamiento {
         elementos.add(x);
     }
     
-    public void agregarInteresadaRE(IInteresadaRE ipa)
+    public void agregarInteresadaRE(IInteresadaRE interesada)
     {
-        interesadasRE.add(ipa);
+        interesadasRE.agregarInteresadaRE(interesada);
     }
     
-    public void avisarRE()
+    public void eliminarInteresadaRE(IInteresadaRE interesada)
     {
-        for (IInteresadaRE x : interesadasRE) {
-            x.actualizarRE();
-        }
+        interesadasRE.eliminarInteresadaRE(interesada);
+        
     }
+    
     
     
     public ReservaEquipamiento buscarReserva(String nombre) throws Exception {
@@ -55,7 +55,16 @@ public class ServicioEquipamiento {
             }
         }
 
-        throw new Exception("No existe un paquete aventurero con el nombre proporcionado.");
+        throw new Exception("No existe un Equipamiento con el nombre proporcionado.");
+    }
+    
+    public void eliminarReserva(String nombre) throws Exception
+    {
+        ReservaEquipamiento re = buscarReserva(nombre);
+        equipamientos.remove(re);
+        interesadasRE.avisarRE();
+        throw new Exception("No existe un Equipamiento con el nombre proporcionado.");
+        
     }
     
     public void limpiarListas() {
@@ -71,6 +80,7 @@ public class ServicioEquipamiento {
     public void agregarReserva(ReservaEquipamiento re)
     {
         equipamientos.add(re);
+        interesadasRE.avisarRE();
     }
 
      public String elementossToString(ReservaEquipamiento re) {
@@ -102,4 +112,6 @@ public class ServicioEquipamiento {
      public ArrayList<ReservaEquipamiento> getEquipamientos() {
         return equipamientos;
     }
+     
+     
 }

@@ -18,7 +18,7 @@ import services.ServicioPaquete;
  *
  * @author Personal
  */
-public class GUIAgregarPA extends javax.swing.JFrame {
+public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
     
     private ServicioPaquete s;
     private ServicioEquipamiento se;
@@ -30,14 +30,19 @@ public class GUIAgregarPA extends javax.swing.JFrame {
         this.se = se;
         inicializar();
         s.limpiarListas();
+        se.agregarInteresadaRE(this);
     }
 
     private void inicializar() {
     for (String actividad : PaqueteAventurero.posiblesActividades()) { 
         jComboBox1.addItem(actividad);
         }
+    jComboBox3.removeAllItems();
     for (ReservaEquipamiento x : se.getEquipamientos())
+    {
         jComboBox3.addItem(x.getNombre());
+        }
+        
     }
     
     private void limpiar()
@@ -498,4 +503,9 @@ public class GUIAgregarPA extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizarRE() {
+        inicializar();
+    }
 }
