@@ -291,26 +291,26 @@ public class ServicioPaquete {
         return x;
     }
 
-    public boolean eliminarPaqueteCultural(String nombre) {
+    public void eliminarPaqueteCultural(String nombre) {
     try {
         PaqueteCultural pc = buscarPaqueteCultural(nombre);
-        interesadasPC.avisarPC();
-        return paquetes.remove(pc);
+        
+        paquetes.remove(pc);
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "No se pudo eliminar");
-        return false;
     }
+    interesadasPC.avisarPC();
 }
 
-public boolean eliminarPaqueteAventurero(String nombre) {
+public void eliminarPaqueteAventurero(String nombre) {
     try {
         PaqueteAventurero pa = buscarPaqueteAventurero(nombre);
-        interesadasPA.avisarPA();
-        return paquetes.remove(pa);
+        paquetes.remove(pa);
+        
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "No se pudo eliminar");
-        return false;
     }
+    interesadasPA.avisarPA();
 }
 
 public void actualizarPaqueteAventurero(PaqueteAventurero pa, ReservaEquipamiento e, Date FechaInicio, Date FechaFin, String[] ActividadesDelPaquete)throws Exception

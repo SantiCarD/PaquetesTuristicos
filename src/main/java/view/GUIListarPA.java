@@ -258,9 +258,7 @@ public class GUIListarPA extends javax.swing.JFrame implements IInteresadaPA, II
     public void actualizarPA() {
         DefaultTableModel model = (DefaultTableModel) TablaPA.getModel();
     model.setRowCount(0); 
-    
     ArrayList<PaqueteTuristico> paquetes = s.getPaquetes();
-    
     for (PaqueteTuristico paquete : paquetes) {
          if (paquete instanceof PaqueteAventurero) {
         PaqueteAventurero paqueteAventurero = (PaqueteAventurero) paquete;

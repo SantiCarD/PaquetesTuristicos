@@ -15,7 +15,7 @@ import services.ServicioPaquete;
  *
  * @author Personal
  */
-public class GUIEliminarPA extends javax.swing.JFrame implements IInteresadaPA{
+public class GUIEliminarPA extends javax.swing.JFrame{
 
     /**
      * Creates new form GUIEliminarPA
@@ -26,7 +26,6 @@ public class GUIEliminarPA extends javax.swing.JFrame implements IInteresadaPA{
         initComponents();
         setLocationRelativeTo(this);
         this.s = s;
-        s.agregarInteresadaPA(this);
     }
 
     /**
@@ -408,33 +407,5 @@ public class GUIEliminarPA extends javax.swing.JFrame implements IInteresadaPA{
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void actualizarPA() {
-            PaqueteAventurero a;  
-        try {
-            a = s.buscarPaqueteAventurero(jTextField1.getText());
-            if(a.getElementos().getTElementos() == null)
-        {
-           jTextField2.setText(a.getNombre());
-        jTextField4.setText(a.getPrecio().toString());
-        jTextField3.setText(a.getFechaInicio().toString());
-        jTextField5.setText(a.getFechaFin().toString());
-        jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
-        jTextField7.setText("No hay Elementos");
-        jTextField9.setText(a.toStringE());
-        }
-        else
-        {
-        jTextField2.setText(a.getNombre());
-        jTextField4.setText(a.getPrecio().toString());
-        jTextField3.setText(a.getFechaInicio().toString());
-        jTextField5.setText(a.getFechaFin().toString());
-        jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
-        jTextField7.setText(a.getElementos().toString());
-        jTextField9.setText(a.toStringE());
-        }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "No existe un paquete con el nombre: "+jTextField1.getText());
-        }
-    }
+
 }
