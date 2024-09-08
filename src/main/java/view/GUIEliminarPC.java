@@ -276,7 +276,7 @@ public class GUIEliminarPC extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnBuscar2)
-                .addGap(123, 123, 123))
+                .addGap(115, 115, 115))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,8 +337,8 @@ public class GUIEliminarPC extends javax.swing.JFrame {
             jTextField2.setText(c.getNombre());
             jTextField4.setText(c.getPrecio().toString());
             jTextField6.setText(c.getNombreGuia());
-            jTextField3.setText(c.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-            jTextField5.setText(c.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+            jTextField3.setText(c.getFechaInicio().toString());
+            jTextField5.setText(c.getFechaFin().toString());
             jTextField7.setText(c.getNvlAcomp()+"");
             jTextField9.setText(c.toStringE());
         } catch (Exception ex) {

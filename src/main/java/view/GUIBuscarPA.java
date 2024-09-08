@@ -331,8 +331,8 @@ public class GUIBuscarPA extends javax.swing.JFrame implements IInteresadaPA{
         {
            jTextField2.setText(a.getNombre());
         jTextField4.setText(a.getPrecio().toString());
-        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField3.setText(a.getFechaInicio().toString());
+        jTextField5.setText(a.getFechaFin().toString());
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
         jTextField7.setText("No hay Elementos");
         jTextField8.setText(a.toStringE());
@@ -341,8 +341,8 @@ public class GUIBuscarPA extends javax.swing.JFrame implements IInteresadaPA{
         {
         jTextField2.setText(a.getNombre());
         jTextField4.setText(a.getPrecio().toString());
-        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField3.setText(a.getFechaInicio().toString());
+        jTextField5.setText(a.getFechaFin().toString());
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
         jTextField7.setText(a.getElementos().toString());
         jTextField8.setText(a.toStringE());
@@ -422,8 +422,8 @@ public class GUIBuscarPA extends javax.swing.JFrame implements IInteresadaPA{
         {
            jTextField2.setText(a.getNombre());
         jTextField4.setText(a.getPrecio().toString());
-        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField3.setText(a.getFechaInicio().toString());
+        jTextField5.setText(a.getFechaFin().toString());
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
         jTextField7.setText("No hay Elementos");
         jTextField8.setText(a.toStringE());
@@ -432,8 +432,8 @@ public class GUIBuscarPA extends javax.swing.JFrame implements IInteresadaPA{
         {
         jTextField2.setText(a.getNombre());
         jTextField4.setText(a.getPrecio().toString());
-        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField3.setText(a.getFechaInicio().toString());
+        jTextField5.setText(a.getFechaFin().toString());
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
         jTextField7.setText(a.getElementos().toString());
         jTextField8.setText(a.toStringE());

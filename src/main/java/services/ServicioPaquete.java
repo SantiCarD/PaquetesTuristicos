@@ -3,6 +3,7 @@ package services;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -101,11 +102,10 @@ public class ServicioPaquete {
     }
 
     public void condonable(PaqueteCultural pc, boolean x) { 
-        if (pc != null) {
-            pc.condonar(x); // o false, según sea necesario
-        } else {
-            JOptionPane.showMessageDialog(null, "No se puede crear un paquete vacío");
-        }
+        if(x) {
+            pc.condonar(x);
+            interesadasPC.avisarPC();
+        } 
     }
 
     public void guardarActividad(String actividad) {
@@ -177,7 +177,7 @@ public class ServicioPaquete {
     
 
 
-    private void validarDatosPaquete(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
+    private void validarDatosPaquete(String nombre, Date fechaInicio, Date fechaFin) throws Exception {
         if (nombre == null || nombre.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El nombre del paquete no puede ser nulo o vacío.");
             throw new Exception("El nombre del paquete no puede ser nulo o vacío.");
@@ -188,19 +188,10 @@ public class ServicioPaquete {
             throw new Exception("Las fechas de inicio y fin no pueden ser nulas.");
             
         }
-        if (fechaInicio.isAfter(fechaFin)) {
-            JOptionPane.showMessageDialog(null, "La fecha de inicio no puede ser posterior a la fecha de fin.");
-            throw new Exception("La fecha de inicio no puede ser posterior a la fecha de fin.");
-            
-        }
-        if (fechaInicio.isBefore(LocalDate.now())) {
-            JOptionPane.showMessageDialog(null, "Las fechas no pueden ser anteriores al día actual.");
-            throw new Exception("Las fechas no pueden ser anteriores al día actual.");
-            
-        }
+        
     }
 
-    public void añadirPaqueteAventurero(String nombre, LocalDate fechaInicio, LocalDate fechaFin, ReservaEquipamiento res) throws Exception {
+    public void añadirPaqueteAventurero(String nombre, Date fechaInicio, Date fechaFin, ReservaEquipamiento res) throws Exception {
             validarDatosPaquete(nombre, fechaInicio, fechaFin);
             PaqueteAventurero PA = new PaqueteAventurero(0,res, nombre, 0.0, fechaInicio, fechaFin, actividades);
             PA.setActividadesDelPaquete(actividades);
@@ -231,7 +222,7 @@ public class ServicioPaquete {
         interesadasPA.avisarPA();
     }
 
-    public void añadirPaqueteCultural(String nombre, LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
+    public void añadirPaqueteCultural(String nombre, Date fechaInicio, Date fechaFin) throws Exception {
             validarDatosPaquete(nombre, fechaInicio, fechaFin);
             
             PaqueteCultural PC = new PaqueteCultural(null, 0, nombre, 0.0, fechaInicio, fechaFin, actividades);
@@ -284,6 +275,7 @@ public class ServicioPaquete {
     }
 
     public PaqueteCultural buscarPaqueteCultural(String nombre) throws Exception {
+        PaqueteCultural x=null;
         if (nombre == null || nombre.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El nombre del paquete no puede ser nulo o vacío.");
             throw new IllegalArgumentException("El nombre del paquete no puede ser nulo o vacío.");
@@ -292,11 +284,11 @@ public class ServicioPaquete {
 
         for (PaqueteTuristico paquete : paquetes) {
             if (paquete instanceof PaqueteCultural && paquete.getNombre().equals(nombre)) {
-                return (PaqueteCultural) paquete;
+                x = (PaqueteCultural) paquete;
             }
         }
 
-        throw new Exception("No existe un paquete cultural con el nombre proporcionado.");
+        return x;
     }
 
     public boolean eliminarPaqueteCultural(String nombre) {
@@ -321,13 +313,90 @@ public boolean eliminarPaqueteAventurero(String nombre) {
     }
 }
 
-public void actualizarPaqueteAventurero(PaqueteAventurero pa, int RestriccionEdad,ReservaEquipamiento e, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete)
-{
-        pa.setNombre(Nombre);
-        pa.setRestriccionEdad(RestriccionEdad);
-        pa.setPrecio(Precio);
+public void actualizarPaqueteAventurero(PaqueteAventurero pa, ReservaEquipamiento e, Date FechaInicio, Date FechaFin, String[] ActividadesDelPaquete)throws Exception
+{       pa.setElementos(e);
         pa.setFechaInicio(FechaInicio);
         pa.setFechaFin(FechaFin);
-        pa.setActividadesDelPaquete(ActividadesDelPaquete); 
+        
+        if (ActividadesDelPaquete[0]== null || ActividadesDelPaquete[1]== null || ActividadesDelPaquete[2]== null || ActividadesDelPaquete[3]== null) {
+            JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
+            throw new IllegalArgumentException("Seleccione las 4 actividades");
+            
+        } 
+        else
+        {
+         pa.setActividadesDelPaquete(ActividadesDelPaquete);
+        }
+         
+        interesadasPA.avisarPA();
 }
+
+public void actualizarPaqueteCultural(PaqueteCultural pa, Date FechaInicio, Date FechaFin, String[] ActividadesDelPaquete)
+{
+        pa.setFechaInicio(FechaInicio);
+        pa.setFechaFin(FechaFin);
+        
+        if (ActividadesDelPaquete[0]== null || ActividadesDelPaquete[1]== null || ActividadesDelPaquete[2]== null || ActividadesDelPaquete[3]== null) {
+            JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
+            throw new IllegalArgumentException("Seleccione las 4 actividades");
+            
+        } 
+        else
+        {
+         pa.setActividadesDelPaquete(ActividadesDelPaquete);
+        }
+         
+        interesadasPC.avisarPC();
+}
+
+public String getPAs()
+{
+    String s = "";
+    for (PaqueteTuristico paquete : paquetes) {
+         if (paquete instanceof PaqueteAventurero) {
+        PaqueteAventurero pa = (PaqueteAventurero) paquete;
+        s+= pa.getNombre()+",";
+        }
+    }
+    return s;
+}
+
+public String getPCs()
+{
+    String s = "";
+    for (PaqueteTuristico paquete : paquetes) {
+         if (paquete instanceof PaqueteCultural) {
+        PaqueteCultural pa = (PaqueteCultural) paquete;
+        s+= pa.getNombre()+",";
+        }
+    }
+    return s;
+}
+public double calcPrecioTotPA()
+{
+    double sumPA=0;
+
+    for (PaqueteTuristico paquete : paquetes) {
+         if (paquete instanceof PaqueteAventurero) {
+        PaqueteAventurero pa = (PaqueteAventurero) paquete;
+        sumPA += pa.getPrecio();
+        }
+    }
+        return sumPA;
+}
+
+public double calcPrecioTotPC()
+{
+    double sumPC=0;
+
+    for (PaqueteTuristico paquete : paquetes) {
+         if (paquete instanceof PaqueteCultural) {
+        PaqueteCultural pc = (PaqueteCultural) paquete;
+        sumPC += pc.getPrecio();
+        }
+    }
+        return sumPC;
+}
+
+
 }

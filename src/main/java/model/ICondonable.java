@@ -9,6 +9,5 @@ package model;
  * @author Personal
  */
 public interface ICondonable {
-    public Boolean condonar(boolean x);
-    
+    public void condonar(boolean x);
 }

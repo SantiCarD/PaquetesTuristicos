@@ -15,12 +15,12 @@ public abstract class PaqueteTuristico {
     
     protected String nombre;
     protected Double precio;
-    protected LocalDate fechaInicio;
-    protected LocalDate fechaFin;
+    protected Date fechaInicio;
+    protected Date fechaFin;
     protected String[] actividadesDelPaquete;
     
 
-    public PaqueteTuristico(String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
+    public PaqueteTuristico(String Nombre, Double Precio, Date FechaInicio, Date FechaFin, String[] ActividadesDelPaquete) {
         this.nombre = Nombre;
         this.precio = Precio;
         this.fechaInicio = FechaInicio;
@@ -50,19 +50,19 @@ public abstract class PaqueteTuristico {
         this.precio = precio;
     }
 
-    public LocalDate getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDate getFechaFin() {
+    public Date getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDate fechaFin) {
+    public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
 

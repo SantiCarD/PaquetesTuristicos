@@ -5,6 +5,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 
@@ -27,7 +28,7 @@ public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
     private static String[] Guias;
     
 
-    public PaqueteCultural(String nombreGuia, int NvlAcompañamiento, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
+    public PaqueteCultural(String nombreGuia, int NvlAcompañamiento, String Nombre, Double Precio, Date FechaInicio, Date FechaFin, String[] ActividadesDelPaquete) {
         super(Nombre, Precio, FechaInicio, FechaFin, ActividadesDelPaquete);
         this.nvlAcomp = NvlAcompañamiento;
         this.nombreGuia = nombreGuia;
@@ -136,12 +137,14 @@ public class PaqueteCultural extends PaqueteTuristico implements ICondonable{
 }
 
     @Override
-    public Boolean condonar(boolean x) {
+    public void condonar(boolean x) {
         if(x==true)
         {
           setPrecio(0.0);
         }
-        return x;
+        else
+        {
+        }
     }
 
     @Override

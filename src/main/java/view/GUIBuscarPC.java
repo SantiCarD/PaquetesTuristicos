@@ -310,8 +310,8 @@ public class GUIBuscarPC extends javax.swing.JFrame {
             jTextField2.setText(c.getNombre());
             jTextField4.setText(c.getPrecio().toString());
             jTextField6.setText(c.getNombreGuia());
-            jTextField3.setText(c.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-            jTextField5.setText(c.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+            jTextField3.setText(c.getFechaInicio().toString());
+            jTextField5.setText(c.getFechaFin().toString());
             jTextField7.setText(""+c.getNvlAcomp());
             jTextField9.setText(c.toStringE());// TODO add your handling code here:
         } catch (Exception ex) {

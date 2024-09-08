@@ -13,23 +13,28 @@ import javax.swing.table.DefaultTableModel;
 import model.PaqueteAventurero;
 import model.PaqueteTuristico;
 import model.ReservaEquipamiento;
+import services.ServicioEquipamiento;
 import services.ServicioPaquete;
 
 /**
  *
  * @author Personal
  */
-public class GUIListarPA extends javax.swing.JFrame implements IInteresadaPA{
+public class GUIListarPA extends javax.swing.JFrame implements IInteresadaPA, IInteresadaRE{
     
     private ServicioPaquete s;
+    private ServicioEquipamiento se;
     /**
      * Creates new form GUIListarPA
      */
-    public GUIListarPA(ServicioPaquete s) {
+    public GUIListarPA(ServicioPaquete s, ServicioEquipamiento se) {
         initComponents();
         setLocationRelativeTo(this);
         this.s = s;
+        this.se = se;
+        listarPaquetes();
         s.agregarInteresadaPA(this);
+        se.agregarInteresadaRE(this);
     }
 
 
@@ -93,10 +98,10 @@ public class GUIListarPA extends javax.swing.JFrame implements IInteresadaPA{
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaPA = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,6 +161,8 @@ public class GUIListarPA extends javax.swing.JFrame implements IInteresadaPA{
             TablaPA.getColumnModel().getColumn(6).setMaxWidth(300);
         }
 
+        jPanel3.setBackground(new java.awt.Color(166, 235, 248));
+
         jLabel1.setBackground(new java.awt.Color(50, 33, 20));
         jLabel1.setFont(new java.awt.Font("Stencil", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,6 +170,23 @@ public class GUIListarPA extends javax.swing.JFrame implements IInteresadaPA{
         jLabel1.setToolTipText("");
         jLabel1.setAlignmentX(0.5F);
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(208, 208, 208)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+        );
 
         jPanel1.setBackground(new java.awt.Color(143, 220, 54));
 
@@ -178,60 +202,38 @@ public class GUIListarPA extends javax.swing.JFrame implements IInteresadaPA{
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(347, 347, 347)
                 .addComponent(jButton1)
-                .addGap(346, 346, 346))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
                 .addComponent(jButton1)
-                .addContainerGap(10, Short.MAX_VALUE))
-        );
-
-        jPanel3.setBackground(new java.awt.Color(166, 235, 248));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 770, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(201, 201, 201))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 299, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -255,6 +257,50 @@ public class GUIListarPA extends javax.swing.JFrame implements IInteresadaPA{
     @Override
     public void actualizarPA() {
         DefaultTableModel model = (DefaultTableModel) TablaPA.getModel();
+    model.setRowCount(0); 
+    
+    ArrayList<PaqueteTuristico> paquetes = s.getPaquetes();
+    
+    for (PaqueteTuristico paquete : paquetes) {
+         if (paquete instanceof PaqueteAventurero) {
+        PaqueteAventurero paqueteAventurero = (PaqueteAventurero) paquete;
+        if(paqueteAventurero.getElementos().getTElementos() == null)
+        {
+            model.addRow(new Object[]{
+            paqueteAventurero.getNombre(),
+            paqueteAventurero.getRestriccionEdad()+" Años",
+            "$"+paqueteAventurero.getPrecio(),
+            paqueteAventurero.getFechaInicio(),
+            paqueteAventurero.getFechaFin(),
+            "No Hay Elementos",
+            paqueteAventurero.toStringE()
+        });
+        }
+        else
+        {
+            model.addRow(new Object[]{
+            paqueteAventurero.getNombre(),
+            paqueteAventurero.getRestriccionEdad()+" Años",
+            "$"+paqueteAventurero.getPrecio(),
+            paqueteAventurero.getFechaInicio(),
+            paqueteAventurero.getFechaFin(),
+            paqueteAventurero.getElementos().toString(),
+            paqueteAventurero.toStringE()
+        });
+        }
+            
+                ;
+    } 
+         else {
+             
+             System.out.println("El paquete "+paquete+" no es del tipo buscado");;
+         }
+    }
+    }
+
+    @Override
+    public void actualizarRE() {
+            DefaultTableModel model = (DefaultTableModel) TablaPA.getModel();
     model.setRowCount(0); 
     
     ArrayList<PaqueteTuristico> paquetes = s.getPaquetes();

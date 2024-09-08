@@ -5,6 +5,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,7 +35,7 @@ public class PaqueteAventurero extends PaqueteTuristico{
     private static String[] actividades;
 
     
-    public PaqueteAventurero(int RestriccionEdad,ReservaEquipamiento e, String Nombre, Double Precio, LocalDate FechaInicio, LocalDate FechaFin, String[] ActividadesDelPaquete) {
+    public PaqueteAventurero(int RestriccionEdad,ReservaEquipamiento e, String Nombre, Double Precio, Date FechaInicio, Date FechaFin, String[] ActividadesDelPaquete) {
         super(Nombre, Precio, FechaInicio, FechaFin, ActividadesDelPaquete);
         this.RestriccionEdad = RestriccionEdad;
         this.Elementos = e;

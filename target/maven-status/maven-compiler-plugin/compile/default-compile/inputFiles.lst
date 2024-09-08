@@ -1,5 +1,7 @@
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\model\ReservaEquipamiento.java
+C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIAgregarRE.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIInfoEmpresa.java
+C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIListarRE.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\services\ServicioEquipamiento.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\model\ICondonable.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\services\ServicioSingleton.java
@@ -10,10 +12,11 @@ C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIEliminarPC.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIAgregarPA.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIBuscarPA.java
-C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIAgregarEquipamiento.java
+C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIActualizarRE.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIAyuda.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\services\ServicioGUIInteresadasPC.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\services\ServicioPaquete.java
+C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIEliminarRE.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIListarPA.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\services\ServicioGUIInteresadasRE.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\model\PaqueteTuristico.java
@@ -21,14 +24,13 @@ C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIPrincipal.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\services\ServicioGUIInteresadasPA.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\IInteresadaPC.java
-C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIListarEquipamiento.java
+C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIActualizarPC.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIEliminarPA.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIPrecioPC.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIListarPC.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIAgregarPC.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\model\InfoEmpresa.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\IInteresadaRE.java
-C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIEliminarEquipamiento.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\model\PaqueteCultural.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\view\GUIDesarrolladores.java
 C:\Users\Personal\Desktop\Universidad\Git\ProyectoEmpresariales_V1\src\main\java\com\mycompany\proyectoempresariales_v1\ProyectoEmpresariales_V1.java

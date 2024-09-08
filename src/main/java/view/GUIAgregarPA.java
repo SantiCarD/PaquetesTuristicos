@@ -34,7 +34,8 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
     }
 
     private void inicializar() {
-    for (String actividad : PaqueteAventurero.posiblesActividades()) { 
+    jComboBox1.removeAllItems();
+        for (String actividad : PaqueteAventurero.posiblesActividades()) { 
         jComboBox1.addItem(actividad);
         }
     jComboBox3.removeAllItems();
@@ -49,12 +50,6 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
     {
         NombrePA.setText(null);
         NombrePA1.setText(null);
-        jTextField3.setText(null);
-        jTextField4.setText(null);
-        jTextField5.setText(null);
-        jTextField6.setText(null);
-        jTextField7.setText(null);
-        jTextField8.setText(null);
         s.limpiarListas();
         
     }
@@ -74,17 +69,15 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
         jComboBox24 = new javax.swing.JComboBox<>();
         BtnAgregar2 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
+        dateChooserPanel1 = new com.toedter.calendar.demo.DateChooserPanel();
+        dateUtil1 = new com.toedter.calendar.DateUtil();
+        dateUtil2 = new com.toedter.calendar.DateUtil();
+        jCalendarBeanInfo1 = new com.toedter.calendar.JCalendarBeanInfo();
+        jCalendarDemo1 = new com.toedter.calendar.demo.JCalendarDemo();
+        jDateChooserBeanInfo1 = new com.toedter.calendar.JDateChooserBeanInfo();
         jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         BtnAgregar1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -99,6 +92,8 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
         BtnAgregar4 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         jInternalFrame1.setVisible(true);
 
@@ -126,44 +121,27 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        javax.swing.GroupLayout jCalendarDemo1Layout = new javax.swing.GroupLayout(jCalendarDemo1.getContentPane());
+        jCalendarDemo1.getContentPane().setLayout(jCalendarDemo1Layout);
+        jCalendarDemo1Layout.setHorizontalGroup(
+            jCalendarDemo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jCalendarDemo1Layout.setVerticalGroup(
+            jCalendarDemo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AgregarPA");
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
-
-        jLabel5.setFont(new java.awt.Font("Sitka Small", 1, 12)); // NOI18N
-        jLabel5.setText("Dia - Mes - Año");
-
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-
-        jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-
-        jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel7.setText("Fecha Fin");
 
         jLabel8.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel8.setText("Fecha Inicio");
-
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-
-        jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
-        jLabel13.setFont(new java.awt.Font("Sitka Small", 1, 12)); // NOI18N
-        jLabel13.setText("Dia - Mes - Año");
 
         jPanel5.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -297,10 +275,10 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(99, 99, 99)
                 .addComponent(BtnAgregar4)
-                .addGap(113, 113, 113))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,35 +307,18 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel7))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(35, 35, 35)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(jLabel9)
@@ -376,18 +337,10 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
                     .addComponent(jLabel8)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -408,14 +361,6 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-                     // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
 
     
     private void BtnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar1ActionPerformed
@@ -447,8 +392,8 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
             System.out.println(se.getEquipamientos());
             System.out.println("xddd");
             s.añadirPaqueteAventurero(NombrePA.getText()
-                ,s.crearFecha(jTextField5.getText(),jTextField4.getText(),jTextField3.getText())
-                ,s.crearFecha(jTextField8.getText(),jTextField6.getText(),jTextField7.getText())
+            ,jDateChooser1.getDate()
+            ,jDateChooser2.getDate()
                 ,se.buscarReserva(jComboBox3.getSelectedItem().toString()));
             JOptionPane.showMessageDialog(null, "Se agrego el paquete");
             limpiar();
@@ -478,16 +423,22 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
     private javax.swing.JButton BtnAgregar4;
     private javax.swing.JTextField NombrePA;
     private javax.swing.JTextField NombrePA1;
+    private com.toedter.calendar.demo.DateChooserPanel dateChooserPanel1;
+    private com.toedter.calendar.DateUtil dateUtil1;
+    private com.toedter.calendar.DateUtil dateUtil2;
+    private com.toedter.calendar.JCalendarBeanInfo jCalendarBeanInfo1;
+    private com.toedter.calendar.demo.JCalendarDemo jCalendarDemo1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox24;
     private javax.swing.JComboBox<String> jComboBox3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooserBeanInfo jDateChooserBeanInfo1;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -496,12 +447,6 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 
     @Override

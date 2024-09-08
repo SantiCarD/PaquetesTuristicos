@@ -30,6 +30,11 @@ public class ServicioEquipamiento {
         elementos.add(x);
     }
     
+    public ArrayList<String> getElementos()
+    {
+        return elementos;
+    }
+    
     public void agregarInteresadaRE(IInteresadaRE interesada)
     {
         interesadasRE.agregarInteresadaRE(interesada);
@@ -58,12 +63,11 @@ public class ServicioEquipamiento {
         throw new Exception("No existe un Equipamiento con el nombre proporcionado.");
     }
     
-    public void eliminarReserva(String nombre) throws Exception
+    public void eliminarReserva(String nombre) throws Exception 
     {
         ReservaEquipamiento re = buscarReserva(nombre);
         equipamientos.remove(re);
         interesadasRE.avisarRE();
-        throw new Exception("No existe un Equipamiento con el nombre proporcionado.");
         
     }
     
@@ -112,6 +116,13 @@ public class ServicioEquipamiento {
      public ArrayList<ReservaEquipamiento> getEquipamientos() {
         return equipamientos;
     }
+     
+
+     public void ActualizarReserva(ReservaEquipamiento re, ArrayList<String> elementox)
+     {
+         re.setTElementos(elementox);
+         interesadasRE.avisarRE();
+     }
      
      
 }

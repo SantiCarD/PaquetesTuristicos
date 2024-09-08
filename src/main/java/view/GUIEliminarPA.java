@@ -270,10 +270,10 @@ public class GUIEliminarPA extends javax.swing.JFrame implements IInteresadaPA{
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(119, 119, 119)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnBuscar2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(119, 119, 119))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,8 +337,8 @@ public class GUIEliminarPA extends javax.swing.JFrame implements IInteresadaPA{
         {
            jTextField2.setText(a.getNombre());
         jTextField4.setText(a.getPrecio().toString());
-        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField3.setText(a.getFechaInicio().toString());
+        jTextField5.setText(a.getFechaFin().toString());
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
         jTextField7.setText("No hay Elementos");
         jTextField9.setText(a.toStringE());
@@ -347,8 +347,8 @@ public class GUIEliminarPA extends javax.swing.JFrame implements IInteresadaPA{
         {
         jTextField2.setText(a.getNombre());
         jTextField4.setText(a.getPrecio().toString());
-        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField3.setText(a.getFechaInicio().toString());
+        jTextField5.setText(a.getFechaFin().toString());
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
         jTextField7.setText(a.getElementos().toString());
         jTextField9.setText(a.toStringE());
@@ -417,8 +417,8 @@ public class GUIEliminarPA extends javax.swing.JFrame implements IInteresadaPA{
         {
            jTextField2.setText(a.getNombre());
         jTextField4.setText(a.getPrecio().toString());
-        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField3.setText(a.getFechaInicio().toString());
+        jTextField5.setText(a.getFechaFin().toString());
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
         jTextField7.setText("No hay Elementos");
         jTextField9.setText(a.toStringE());
@@ -427,8 +427,8 @@ public class GUIEliminarPA extends javax.swing.JFrame implements IInteresadaPA{
         {
         jTextField2.setText(a.getNombre());
         jTextField4.setText(a.getPrecio().toString());
-        jTextField3.setText(a.getFechaInicio().format(DateTimeFormatter.ISO_DATE));
-        jTextField5.setText(a.getFechaFin().format(DateTimeFormatter.ISO_DATE));
+        jTextField3.setText(a.getFechaInicio().toString());
+        jTextField5.setText(a.getFechaFin().toString());
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
         jTextField7.setText(a.getElementos().toString());
         jTextField9.setText(a.toStringE());
