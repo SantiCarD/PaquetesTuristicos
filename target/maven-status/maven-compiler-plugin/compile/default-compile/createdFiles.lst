@@ -86,6 +86,7 @@ view\GUIPrincipal$10.class
 view\GUIInfoEmpresa$1.class
 view\GUIAgregarPC$2.class
 view\GUIEliminarPC$3.class
+view\GUIActualizarPC$10.class
 view\GUIActualizarPC$5.class
 view\GUIPrincipal$20.class
 view\GUIBuscarPA.class

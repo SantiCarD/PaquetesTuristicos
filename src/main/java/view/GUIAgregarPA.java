@@ -389,8 +389,6 @@ public class GUIAgregarPA extends javax.swing.JFrame implements IInteresadaRE{
     private void BtnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar4ActionPerformed
         
         try {
-            System.out.println(se.getEquipamientos());
-            System.out.println("xddd");
             s.añadirPaqueteAventurero(NombrePA.getText()
             ,jDateChooser1.getDate()
             ,jDateChooser2.getDate()

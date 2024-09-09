@@ -63,44 +63,6 @@ public class ServicioPaquete {
         }
     }
 
-    public LocalDate crearFecha(String x, String y, String z) throws Exception {
-        try {
-            if (x == null || x.isEmpty() || y == null || y.isEmpty() || z == null || z.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Los valores de año, mes y día no pueden ser nulos o vacíos.");
-                throw new Exception("Los valores de año, mes y día no pueden ser nulos o vacíos.");
-                
-            }
-
-            int year = Integer.parseInt(x);
-            int month = Integer.parseInt(y);
-            int day = Integer.parseInt(z);
-
-            LocalDate fecha = LocalDate.of(year, month, day);
-            
-            // Validar que la fecha no sea anterior a hoy
-            if (fecha.isBefore(LocalDate.now())) {
-                JOptionPane.showMessageDialog(null, "La fecha no puede ser anterior al día de hoy.");
-                throw new Exception("La fecha no puede ser anterior al día de hoy.");
-                
-            }
-
-            return fecha;
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Los valores de año, mes y día deben ser números enteros.");
-            throw new Exception("Los valores de año, mes y día deben ser números enteros.", e);
-            
-        } catch (DateTimeParseException | IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Los valores proporcionados no corresponden a una fecha válida.");
-            throw new Exception("Los valores proporcionados no corresponden a una fecha válida.", e);
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocurrió un error inesperado al crear la fecha.");
-            throw new Exception("Ocurrió un error inesperado al crear la fecha.", e);
-            
-        }
-    }
-
     public void condonable(PaqueteCultural pc, boolean x) { 
         if(x) {
             pc.condonar(x);
@@ -177,7 +139,7 @@ public class ServicioPaquete {
     
 
 
-    private void validarDatosPaquete(String nombre, Date fechaInicio, Date fechaFin) throws Exception {
+    public void validarDatosPaquete(String nombre, Date fechaInicio, Date fechaFin) throws Exception {
         if (nombre == null || nombre.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El nombre del paquete no puede ser nulo o vacío.");
             throw new Exception("El nombre del paquete no puede ser nulo o vacío.");
@@ -193,8 +155,12 @@ public class ServicioPaquete {
 
     public void añadirPaqueteAventurero(String nombre, Date fechaInicio, Date fechaFin, ReservaEquipamiento res) throws Exception {
             validarDatosPaquete(nombre, fechaInicio, fechaFin);
+             if (actividades[0]== null || actividades[1]== null || actividades[2]== null || actividades[3]== null) {
+            JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
+            throw new IllegalArgumentException("Seleccione las 4 actividades");
+            
+        }
             PaqueteAventurero PA = new PaqueteAventurero(0,res, nombre, 0.0, fechaInicio, fechaFin, actividades);
-            PA.setActividadesDelPaquete(actividades);
             PA.setPrecio(PA.calcPrecio());
             PA.setRestriccionEdad(PA.CalcRestEdad());
             actividades = new String[4];
@@ -212,11 +178,7 @@ public class ServicioPaquete {
                 
             }
         }
-        if (PA.getActividadesDelPaquete()[0]== null || PA.getActividadesDelPaquete()[1]== null || PA.getActividadesDelPaquete()[2]== null || PA.getActividadesDelPaquete()[3]== null) {
-            JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
-            throw new IllegalArgumentException("Seleccione las 4 actividades");
-            
-        }
+       
         
         paquetes.add(PA);
         interesadasPA.avisarPA();
@@ -224,7 +186,11 @@ public class ServicioPaquete {
 
     public void añadirPaqueteCultural(String nombre, Date fechaInicio, Date fechaFin) throws Exception {
             validarDatosPaquete(nombre, fechaInicio, fechaFin);
+            if (actividades[0]== null || actividades[1]== null || actividades[2]== null || actividades[3]== null) {
+            JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
+            throw new IllegalArgumentException("Seleccione las 4 actividades");
             
+        }
             PaqueteCultural PC = new PaqueteCultural(null, 0, nombre, 0.0, fechaInicio, fechaFin, actividades);
             PC.setActividadesDelPaquete(actividades);
             PC.setPrecio(PC.calcPrecio());
@@ -245,11 +211,6 @@ public class ServicioPaquete {
                 throw new IllegalArgumentException("Ya existe un paquete cultural con el mismo nombre.");
                 
             }
-        }
-        if (PC.getActividadesDelPaquete()[0]== null || PC.getActividadesDelPaquete()[1]== null || PC.getActividadesDelPaquete()[2]== null || PC.getActividadesDelPaquete()[3]== null) {
-            JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
-            throw new IllegalArgumentException("Seleccione las 4 actividades");
-            
         }
 
         paquetes.add(PC);
@@ -314,37 +275,31 @@ public void eliminarPaqueteAventurero(String nombre) {
 }
 
 public void actualizarPaqueteAventurero(PaqueteAventurero pa, ReservaEquipamiento e, Date FechaInicio, Date FechaFin, String[] ActividadesDelPaquete)throws Exception
-{       pa.setElementos(e);
+{       
+        
+        pa.setElementos(e);
         pa.setFechaInicio(FechaInicio);
         pa.setFechaFin(FechaFin);
-        
-        if (ActividadesDelPaquete[0]== null || ActividadesDelPaquete[1]== null || ActividadesDelPaquete[2]== null || ActividadesDelPaquete[3]== null) {
-            JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
-            throw new IllegalArgumentException("Seleccione las 4 actividades");
-            
-        } 
-        else
-        {
-         pa.setActividadesDelPaquete(ActividadesDelPaquete);
-        }
+        pa.setActividadesDelPaquete(ActividadesDelPaquete.clone());
+
          
         interesadasPA.avisarPA();
 }
 
-public void actualizarPaqueteCultural(PaqueteCultural pa, Date FechaInicio, Date FechaFin, String[] ActividadesDelPaquete)
+public void actualizarPaqueteCultural(PaqueteCultural pa, Date FechaInicio, Date FechaFin, String[] ActividadesDelPaquete, boolean x)
 {
-        pa.setFechaInicio(FechaInicio);
-        pa.setFechaFin(FechaFin);
-        
-        if (ActividadesDelPaquete[0]== null || ActividadesDelPaquete[1]== null || ActividadesDelPaquete[2]== null || ActividadesDelPaquete[3]== null) {
-            JOptionPane.showMessageDialog(null, "Seleccione las 4 actividades");
-            throw new IllegalArgumentException("Seleccione las 4 actividades");
-            
-        } 
-        else
-        {
+         pa.setFechaInicio(FechaInicio);
+         pa.setFechaFin(FechaFin);
          pa.setActividadesDelPaquete(ActividadesDelPaquete);
-        }
+         if(x)
+         {
+         condonable(pa, x);   
+         }
+         else
+         {
+             pa.setPrecio(pa.calcPrecio());
+         }
+         
          
         interesadasPC.avisarPC();
 }

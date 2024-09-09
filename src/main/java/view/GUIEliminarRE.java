@@ -202,7 +202,7 @@ public class GUIEliminarRE extends javax.swing.JFrame {
         try {
             s.eliminarReserva(NombrePA.getText());
             JOptionPane.showMessageDialog(null, "Se Elimino la Reserva");
-            jButton1.setEnabled(false);
+            BtnAgregar4.setEnabled(false);
             limpiar();
 
         } catch (Exception ex) {

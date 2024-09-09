@@ -54,8 +54,10 @@ public class GUIActualizarPA extends javax.swing.JFrame {
         jTextField1.setText(null);
         jTextField13.setText(null);
         jTextField14.setText(null);
-        
+        jDateChooser1.setDate(null);
+        jDateChooser2.setDate(null);
         s.limpiarListas();
+        se.limpiarListas();
         
     }
 
@@ -401,6 +403,7 @@ public class GUIActualizarPA extends javax.swing.JFrame {
 
         BtnBuscar1.setFont(new java.awt.Font("Segoe Print", 0, 10)); // NOI18N
         BtnBuscar1.setText("Actualizar Paquete Aventurero");
+        BtnBuscar1.setEnabled(false);
         BtnBuscar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscar1ActionPerformed(evt);
@@ -518,9 +521,9 @@ public class GUIActualizarPA extends javax.swing.JFrame {
                
                 jTextField3.setText(a.getFechaInicio().toString());
                 jTextField5.setText(a.getFechaFin().toString());
-
                 jTextField7.setText("No hay Elementos");
                 jTextField8.setText(a.toStringE());
+                BtnBuscar1.setEnabled(true);
             }
             else
             {
@@ -529,6 +532,7 @@ public class GUIActualizarPA extends javax.swing.JFrame {
                 jTextField5.setText(a.getFechaFin().toString());
                 jTextField7.setText(a.getElementos().toString());
                 jTextField8.setText(a.toStringE());
+                BtnBuscar1.setEnabled(true);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No existe un paquete con el nombre: "+jTextField1.getText());
@@ -538,14 +542,29 @@ public class GUIActualizarPA extends javax.swing.JFrame {
 
     private void BtnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscar1ActionPerformed
     
-        try {
-            PaqueteAventurero pa = s.buscarPaqueteAventurero(jTextField1.getText());
-            ReservaEquipamiento re = new ReservaEquipamiento(se.getElementos(), pa.getElementos().getNombre());
-            s.actualizarPaqueteAventurero(pa, re,jDateChooser1.getDate(), jDateChooser2.getDate(),s.getActividades());
-            limpiar();
-        } catch (Exception ex) {
-            Logger.getLogger(GUIActualizarPA.class.getName()).log(Level.SEVERE, null, ex);
+         try {
+        PaqueteAventurero pa = s.buscarPaqueteAventurero(jTextField1.getText());
+        ReservaEquipamiento re = new ReservaEquipamiento(se.getElementos(), pa.getElementos().getNombre());
+        
+        String[] nuevasActividades = jTextField14.getText().split(", ");
+        if (nuevasActividades.length != 4) {
+            JOptionPane.showMessageDialog(null, "Debe haber exactamente 4 actividades");
+            return;
         }
+        if(jTextField13.getText().isBlank())
+        {
+           JOptionPane.showMessageDialog(null, "Debe haber al menos 1 elemento");
+            return; 
+        }
+        s.validarDatosPaquete(pa.getNombre(), jDateChooser1.getDate(), jDateChooser2.getDate());
+        s.actualizarPaqueteAventurero(pa, re, jDateChooser1.getDate(), jDateChooser2.getDate(), nuevasActividades);
+        limpiar();
+        BtnBuscar1.setEnabled(false);
+        JOptionPane.showMessageDialog(null, "Se actualizó el paquete aventurero");
+    } catch (Exception ex) {
+        Logger.getLogger(GUIActualizarPA.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Error al actualizar el paquete: " + ex.getMessage());
+    }
     }//GEN-LAST:event_BtnBuscar1ActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed

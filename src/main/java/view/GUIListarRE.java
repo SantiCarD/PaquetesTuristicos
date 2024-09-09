@@ -28,6 +28,13 @@ public class GUIListarRE extends javax.swing.JFrame implements IInteresadaRE{
         listarReservas();
         sre.agregarInteresadaRE(this);
     }
+
+    @Override
+    public void dispose() {
+        super.dispose(); 
+        sre.eliminarInteresadaRE(this);
+    }
+    
     private void listarReservas() {
     DefaultTableModel model = (DefaultTableModel) TablaPA.getModel();
     model.setRowCount(0); 

@@ -71,7 +71,7 @@ public abstract class PaqueteTuristico {
     }
 
     public void setActividadesDelPaquete(String[] actividadesDelPaquete) {
-        this.actividadesDelPaquete = actividadesDelPaquete;
+        this.actividadesDelPaquete = actividadesDelPaquete.clone();
     }
 
     

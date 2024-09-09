@@ -72,17 +72,22 @@ public class ServicioEquipamiento {
     }
     
     public void limpiarListas() {
-        elementos = new ArrayList<String>();
+        elementos = new ArrayList<>();
     }
     
-    public ReservaEquipamiento getReserva(String nombre)
+    public ReservaEquipamiento crearReserva(String nombre)
     {
         ReservaEquipamiento re = new ReservaEquipamiento(elementos,nombre);
         return re;
     }
     
-    public void agregarReserva(ReservaEquipamiento re)
+    public void agregarReserva(ReservaEquipamiento re)throws Exception
     {
+        if (re.getNombre() == null || re.getNombre().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El nombre del paquete no puede ser nulo o vacío.");
+            throw new Exception("El nombre del paquete no puede ser nulo o vacío.");
+            
+        }
         equipamientos.add(re);
         interesadasRE.avisarRE();
     }

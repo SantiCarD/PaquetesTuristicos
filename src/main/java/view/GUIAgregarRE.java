@@ -6,6 +6,7 @@ package view;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.PaqueteAventurero;
 import model.ReservaEquipamiento;
@@ -41,6 +42,14 @@ public class GUIAgregarRE extends javax.swing.JFrame {
         NombrePA1.setText(null);
         s.limpiarListas(); 
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        s.limpiarListas();
+    }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -192,6 +201,7 @@ public class GUIAgregarRE extends javax.swing.JFrame {
 
         BtnAgregar4.setFont(new java.awt.Font("Segoe Print", 0, 10)); // NOI18N
         BtnAgregar4.setText("Agregar Reserva Elementos");
+        BtnAgregar4.setEnabled(false);
         BtnAgregar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAgregar4ActionPerformed(evt);
@@ -252,6 +262,7 @@ public class GUIAgregarRE extends javax.swing.JFrame {
     private void BtnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar1ActionPerformed
         s.agregarElementos(jComboBox1.getSelectedItem().toString());
         NombrePA1.setText(s.elementosToString());
+        BtnAgregar4.setEnabled(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnAgregar1ActionPerformed
 
@@ -271,9 +282,12 @@ public class GUIAgregarRE extends javax.swing.JFrame {
     private void BtnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar4ActionPerformed
 
         try {
-            s.agregarReserva(s.getReserva(NombrePA.getText()));
+            s.agregarReserva(s.crearReserva(NombrePA.getText()));
             JOptionPane.showMessageDialog(null, "Se agrego la Reserva");
+            System.out.println(s.getElementos().toString());
+            
             limpiar();
+            BtnAgregar4.setEnabled(false);
 
         } catch (Exception ex) {
             Logger.getLogger(GUIAgregarPA.class.getName()).log(Level.SEVERE, null, ex);

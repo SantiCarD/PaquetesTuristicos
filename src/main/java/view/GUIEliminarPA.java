@@ -259,6 +259,7 @@ public class GUIEliminarPA extends javax.swing.JFrame{
 
         BtnBuscar2.setFont(new java.awt.Font("Segoe Print", 0, 10)); // NOI18N
         BtnBuscar2.setText("Eliminar Paquete Aventuero");
+        BtnBuscar2.setEnabled(false);
         BtnBuscar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscar2ActionPerformed(evt);
@@ -341,6 +342,7 @@ public class GUIEliminarPA extends javax.swing.JFrame{
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
         jTextField7.setText("No hay Elementos");
         jTextField9.setText(a.toStringE());
+        BtnBuscar2.setEnabled(true);
         }
         else
         {
@@ -351,6 +353,7 @@ public class GUIEliminarPA extends javax.swing.JFrame{
         jTextField6.setText(String.valueOf(a.getRestriccionEdad()));
         jTextField7.setText(a.getElementos().toString());
         jTextField9.setText(a.toStringE());
+        BtnBuscar2.setEnabled(true);
         }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No existe un paquete con el nombre: "+jTextField1.getText());
@@ -365,6 +368,7 @@ public class GUIEliminarPA extends javax.swing.JFrame{
     private void BtnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscar2ActionPerformed
     s.eliminarPaqueteAventurero(jTextField1.getText());   
     JOptionPane.showMessageDialog(null, "Se elimino el paquete");// TODO add your handling code here:
+    BtnBuscar2.setEnabled(false);
     }//GEN-LAST:event_BtnBuscar2ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
